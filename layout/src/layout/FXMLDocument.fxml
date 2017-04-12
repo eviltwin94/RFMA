@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1104.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layout.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="763.0" fitWidth="1617.0" layoutX="28.0" layoutY="-17.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@c1.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="399.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="644.0" prefWidth="1104.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TreeTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.85" prefHeight="329.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TreeTableColumn prefWidth="130.0" text="Robot" />
+                  <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
+                  <TreeTableColumn prefWidth="99.0" text="Running time" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="60.0" text="Distance" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="0.0" text="Task" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
+                  <TreeTableColumn minWidth="0.0" text="Consumption" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="50.0" text="Charge" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
+               </columns>
+               <BorderPane.margin>
+                  <Insets bottom="140.0" right="40.0" top="70.0" />
+               </BorderPane.margin>
+            </TreeTableView>
+         </center>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="360.0" color="#fcf8f8" elevation="120.35" />
+               </light>
+            </Lighting>
+         </effect>
+         <left>
+            <VBox prefHeight="602.0" prefWidth="290.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="Add_New_Robot" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Add_New_Robot_Layout" prefHeight="37.0" prefWidth="183.0" text="Add New Robot" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="1.0" centerY="0.9095238095238095" radius="0.5">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="70.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Add_New_Robot_Type" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="10.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Add_New_Robot_Type_Layout" prefHeight="37.0" prefWidth="186.0" text="Add New Robot Type" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Delete_Robot_Type" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="35.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Delete_Robot_Type_Layout" prefHeight="37.0" prefWidth="185.0" text="Delete Robot Type" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Add_New_Task" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="10.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Add_New_Task_Layout" prefHeight="37.0" prefWidth="184.0" text="Add New Task" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Edit_Charge" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="85.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Edit_Charge_layout" prefHeight="37.0" prefWidth="185.0" text="Edit Charge" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Edit_Authotized_IPList" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="60.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Edit_Authorized_IPList_layout" prefHeight="37.0" prefWidth="188.0" text="Edit Authorized IP List" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="Consult_Operation_Data" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="400.0" layoutX="10.0" layoutY="436.0" lineSpacing="9.0" mnemonicParsing="false" onAction="#Consult_Operation_Data_layout" text="Consult Operation Data" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="BLACK" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <VBox.margin>
+                        <Insets left="5.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="602.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Fleet Management Application" wrappingWidth="573.298828125" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Text>
+         </top>
+      </BorderPane>
+      <Button fx:id="alerta" layoutX="1157.0" layoutY="605.0" mnemonicParsing="false" onAction="#alertar" text="Simulate alert" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="Add_New_Robot_pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layout.Add_New_RobotController">
+   <children>
+      <ImageView fitHeight="763.0" fitWidth="1617.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@c1.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="38.0" layoutY="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#load_main" prefHeight="644.0" prefWidth="1104.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="-38.0" AnchorPane.topAnchor="-14.0">
+         <center>
+            <TreeTableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="503.0" prefWidth="759.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TreeTableColumn prefWidth="130.0" text="Robot" />
+                  <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
+                  <TreeTableColumn prefWidth="99.0" text="Running time" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="60.0" text="Distance" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="0.0" text="Task" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
+                  <TreeTableColumn minWidth="0.0" text="Consumption" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="50.0" text="Charge" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
+               </columns>
+               <BorderPane.margin>
+                  <Insets bottom="140.0" right="160.0" top="70.0" />
+               </BorderPane.margin>
+            </TreeTableView>
+         </center>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="360.0" color="#fcf8f8" elevation="120.35" />
+               </light>
+            </Lighting>
+         </effect>
+         <left>
+            <VBox prefHeight="602.0" prefWidth="290.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Robot">
+                     <VBox.margin>
+                        <Insets left="70.0" top="70.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <SplitPane dividerPositions="0.5069444444444444" prefHeight="438.0" prefWidth="290.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <TextArea layoutX="-28.0" layoutY="-32.0" prefHeight="469.0" prefWidth="200.0" />
+                              <Text layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Name:" AnchorPane.leftAnchor="0.0" />
+                              <Text layoutX="43.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Type:" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="40.056640625" AnchorPane.topAnchor="50.0" />
+                              <Text boundsType="VISUAL" layoutX="43.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acquisition/Construction Date:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="90.0" />
+                              <Text layoutX="10.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Battery Capacity (Wh):" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="130.0" />
+                              <Text layoutX="10.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Charge (%):" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="170.0" />
+                              <Text layoutX="10.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="210.0" />
+                              <Text layoutX="10.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="b:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="250.0" />
+                              <Text layoutX="10.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="c:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="290.0" />
+                              <Text layoutX="10.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="d:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="330.0" />
+                              <Text layoutX="10.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description (facultative):" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="370.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="212.0">
+                           <children>
+                              <TextField layoutY="14.0" />
+                              <TextField layoutY="50.0" />
+                              <TextField layoutY="75.0" AnchorPane.topAnchor="90.0" />
+                              <TextField layoutY="116.0" AnchorPane.topAnchor="130.0" />
+                              <TextField layoutY="170.0" />
+                              <TextField layoutY="206.0" AnchorPane.topAnchor="210.0" />
+                              <TextField layoutY="248.0" />
+                              <TextField layoutY="290.0" />
+                              <TextField layoutY="330.0" />
+                              <TextField layoutX="-5.0" layoutY="369.0" />
+                              <Button layoutX="44.0" layoutY="403.0" mnemonicParsing="false" text="Add" />
+                           </children></AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></VBox>
+         </left>
+         <top>
+            <Text fx:id="main" onMouseClicked="#load_main" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Fleet Management Application" wrappingWidth="541.298828125" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
