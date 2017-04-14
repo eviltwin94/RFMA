@@ -1,0 +1,6 @@
+O ficheiro RFMA_DB.db é a base de dados
+
+Para utilizar este ficheiro temos de criar uma pasta (..\DB_RFMA) e copiar todos os ficheiros para lá.
+Depois para executar a BD basta abrir o terminal e executar: >sqlite3 RFMA_DB.db
+
+Há também uma extensão para o Mozilla que permite fazer a gestão da BD em ambiente gráfico. SQLite Manager, pode ser encontrado na store.
