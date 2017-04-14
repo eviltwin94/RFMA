@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS "Operation";
+CREATE TABLE "Operation" ("id_operation" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "execution_time" DOUBLE NOT NULL , "total_distance" DOUBLE NOT NULL , "total_energy_consumption" DOUBLE NOT NULL , "charges_number" INTEGER NOT NULL , "discharges_number" INTEGER NOT NULL );
+DROP TABLE IF EXISTS "Robot";
+CREATE TABLE "Robot" ("robot_name" CHAR PRIMARY KEY  NOT NULL , "charge" DOUBLE NOT NULL , "capacity" DOUBLE NOT NULL , "birthday" DATETIME NOT NULL , "a" DOUBLE NOT NULL , "b" DOUBLE NOT NULL , "c" DOUBLE NOT NULL , "d" DOUBLE NOT NULL );
+INSERT INTO "Robot" VALUES('Robot1',50,90,'2017-04-10',1,2,3,4);
+INSERT INTO "Robot" VALUES('Robot2',90,190,'2017-04-10',4,2,3,4);
+DROP TABLE IF EXISTS "Robot Type";
+CREATE TABLE "Robot Type" ("id_robot_type" INTEGER PRIMARY KEY  NOT NULL , "payload" DOUBLE NOT NULL , "locomotion_type" CHAR NOT NULL , "manufactor_name" CHAR NOT NULL );
+DROP TABLE IF EXISTS "Task";
+CREATE TABLE "Task" ("id_task" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "type" CHAR NOT NULL , "description" CHAR);
