@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="layout.jnlp">
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="RFMA.jnlp">
   <information>
-    <title>layout</title>
+    <title>RFMA</title>
     <vendor>gabriel</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="layout.jar" size="915410" download="eager" />
+    <jar href="RFMA.jar" size="915413" download="eager" />
     <jar href="lib\sqlite-jdbc-3.16.1.jar" size="6161579" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="layout" >
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="RFMA" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="layout.Layout"  name="layout" />
+  <jfx:javafx-desc  width="800" height="600" main-class="layout.Layout"  name="RFMA" />
   <update check="always"/>
 </jnlp>
