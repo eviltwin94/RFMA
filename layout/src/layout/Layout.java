@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import basedados.SQLiteJDBCDriverConnection;
+import data_manager.SQLiteJDBCDriverConnection;
 
 /**
  *
@@ -47,7 +47,6 @@ public class Layout extends Application {
         SQLiteJDBCDriverConnection.connect();
         
         
-        System.out.println("Connection to SQLite has been established.");
         
     }
     
