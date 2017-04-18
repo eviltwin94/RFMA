@@ -35,19 +35,16 @@ public class insert_task {
         return conn;
     }
  
-    /**
-     * Insert a new row into the warehouses table
-     *
-     * @param name
-     * @param capacity
-     */
-    public void insert(String name, double capacity) {
-        String sql = "INSERT INTO warehouses(name,capacity) VALUES(?,?)";
+    
+    public void insert(int task_id, String task_name, String task_description) {
+        String sql = "INSERT INTO Task(task_id, task_name, task_description) VALUES(?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.setDouble(2, capacity);
+            
+            pstmt.setInt(1,task_id);
+            pstmt.setString(2, task_name);
+            pstmt.setString(3, task_description);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -57,13 +54,13 @@ public class insert_task {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    /*
  
         insert_task app = new insert_task();
         
-        app.insert("Raw Materials", 3000);
+        app.insert(1,"programar","teste");
        
-    }
+    */
  
 }
     

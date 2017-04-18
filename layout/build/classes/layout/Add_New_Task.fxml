@@ -64,14 +64,16 @@
                            <children>
                               <TextArea layoutX="-28.0" layoutY="-32.0" prefHeight="469.0" prefWidth="200.0" />
                               <Text layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Name:" AnchorPane.leftAnchor="0.0" />
-                              <Text layoutX="43.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description (facultative):" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="40.056640625" AnchorPane.topAnchor="50.0" />
+                              <Text layoutX="8.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description (facultative):" AnchorPane.bottomAnchor="155.98828125" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.34765625" AnchorPane.topAnchor="98.05078125" />
+                              <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task ID:" />
                            </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="212.0">
                            <children>
-                              <TextField layoutY="14.0" />
-                              <TextField fx:id="teste" layoutY="50.0" prefHeight="93.0" prefWidth="149.0" text="&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
-                              <Button layoutX="43.0" layoutY="158.0" mnemonicParsing="false" text="Add" />
+                              <TextField fx:id="task_name_tf" layoutY="14.0" />
+                              <TextField fx:id="task_description_tf" layoutX="-5.0" layoutY="104.0" prefHeight="93.0" prefWidth="149.0" text="&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;" />
+                              <Button layoutX="37.0" layoutY="209.0" mnemonicParsing="false" onAction="#adicionar_tarefa" text="Add" />
+                              <TextField fx:id="task_id_tf" layoutX="-5.0" layoutY="53.0" />
                            </children>
                         </AnchorPane>
                      </items>
