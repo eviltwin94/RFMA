@@ -5,20 +5,19 @@
  */
 package data_manager;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author gabriel
  */
-public class insert_task {
+public class insert_robot_type {
     
-    /**
+    
+      /**
      * Connect to the test.db database
      *
      * @return the Connection object
@@ -36,23 +35,20 @@ public class insert_task {
     }
  
     
-    public void insert(int task_id, String task_name, String task_description) {
-        String sql = "INSERT INTO Task(task_id, task_name, task_description) VALUES(?,?,?)";
+    public void insert(int robot_type_id, double payload, String locomotion_type, String manufactor_name) {
+        String sql = "INSERT INTO RobotType(robot_type_id, payload, locomotion_type, manufactor_name) VALUES(?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setInt(1,task_id);
-            pstmt.setString(2, task_name);
-            pstmt.setString(3, task_description);
+            pstmt.setInt(1,robot_type_id);
+            pstmt.setDouble(2, payload);
+            pstmt.setString(3, locomotion_type);
+            pstmt.setString(4, manufactor_name);
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
- 
-    
- 
 }
-    
-

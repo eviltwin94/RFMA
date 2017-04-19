@@ -71,11 +71,11 @@
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="171.0">
                            <children>
-                              <TextField layoutY="14.0" prefHeight="25.0" prefWidth="173.0" />
-                              <TextField layoutY="75.0" prefHeight="25.0" prefWidth="173.0" AnchorPane.topAnchor="90.0" />
-                              <TextField layoutY="116.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.topAnchor="130.0" />
+                              <TextField fx:id="robot_type_tf" layoutY="14.0" prefHeight="25.0" prefWidth="173.0" />
+                              <TextField fx:id="manufactor_name_tf" layoutY="75.0" prefHeight="25.0" prefWidth="173.0" AnchorPane.topAnchor="90.0" />
+                              <TextField fx:id="payload_tf" layoutY="116.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.topAnchor="130.0" />
                               <ChoiceBox fx:id="locomotion_type" layoutX="11.0" layoutY="52.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.leftAnchor="0.0" />
-                              <Button layoutX="60.0" layoutY="169.0" mnemonicParsing="false" text="Add" />
+                              <Button layoutX="60.0" layoutY="169.0" mnemonicParsing="false" onAction="#adicionar_robot_type" text="Add" />
                            </children>
                         </AnchorPane>
                      </items>
