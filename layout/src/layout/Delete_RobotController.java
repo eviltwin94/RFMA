@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,6 +39,9 @@ public class Delete_RobotController implements Initializable {
     locomotion_type.getItems().removeAll(locomotion_type.getItems());
     locomotion_type.getItems().addAll("robot 1", "robot 2", "robot 3", "robot 4", "robot 5", "robot 6");
     locomotion_type.getSelectionModel().select("robot 1");
+    
+     select_robot_type app = new select_robot_type();
+        app.selectAll();
     }     
 
     @FXML
