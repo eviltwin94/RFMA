@@ -8,6 +8,7 @@ package layout;
 import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,12 +37,26 @@ public class Delete_RobotController implements Initializable {
      */
      @Override
         public void initialize(URL location, ResourceBundle resources) {
+            
+            
+            select_robot_type lista = new select_robot_type();
+            
+            /*
+        ArrayList<Integer> robotTypeList = lista.selectAll();
+            */
+        
     locomotion_type.getItems().removeAll(locomotion_type.getItems());
+    lista.selectAll(locomotion_type);
+          
+    /*
+        locomotion_type.getItems().add(lista.selectAll());
+*/
+    
+    /*
     locomotion_type.getItems().addAll("robot 1", "robot 2", "robot 3", "robot 4", "robot 5", "robot 6");
     locomotion_type.getSelectionModel().select("robot 1");
-    
-     select_robot_type app = new select_robot_type();
-        app.selectAll();
+    */
+     
     }     
 
     @FXML

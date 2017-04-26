@@ -18,9 +18,9 @@
             <Image url="@c1.jpg" />
          </image>
       </ImageView>
-      <BorderPane layoutX="38.0" layoutY="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#load_main" prefHeight="644.0" prefWidth="1104.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="-38.0" AnchorPane.topAnchor="-14.0">
+      <BorderPane layoutX="38.0" layoutY="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#load_main" prefHeight="644.0" prefWidth="1104.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
          <center>
-            <TreeTableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="503.0" prefWidth="759.0" BorderPane.alignment="CENTER">
+            <TreeTableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="503.0" prefWidth="757.0" BorderPane.alignment="CENTER">
                <columns>
                   <TreeTableColumn prefWidth="130.0" text="Robot" />
                   <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
@@ -34,7 +34,7 @@
                   <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
                </columns>
                <BorderPane.margin>
-                  <Insets bottom="140.0" right="160.0" top="70.0" />
+                  <Insets bottom="140.0" top="70.0" />
                </BorderPane.margin>
             </TreeTableView>
          </center>
@@ -109,6 +109,9 @@
                </BorderPane.margin>
             </Text>
          </top>
+         <right>
+            <VBox prefHeight="602.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>
