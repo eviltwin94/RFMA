@@ -84,7 +84,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="212.0">
                            <children>
                               <TextField layoutY="14.0" />
-                              <TextField layoutY="50.0" />
+                              <ChoiceBox fx:id="locomotion_type" layoutX="-5.0" layoutY="47.0" prefWidth="150.0" AnchorPane.topAnchor="47.0" />
                               <TextField layoutY="75.0" AnchorPane.topAnchor="90.0" />
                               <TextField layoutY="116.0" AnchorPane.topAnchor="130.0" />
                               <TextField layoutY="170.0" />
