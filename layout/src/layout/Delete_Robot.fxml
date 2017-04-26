@@ -63,7 +63,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="358.0">
                            <children>
                               <ChoiceBox fx:id="locomotion_type" layoutX="86.0" layoutY="69.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.leftAnchor="86.0" />
-                              <Button layoutX="147.0" layoutY="140.0" mnemonicParsing="false" text="Delete" />
+                              <Button fx:id="deleteButton" layoutX="147.0" layoutY="140.0" mnemonicParsing="false" onAction="#apagar_Robot_Type" text="Delete" />
                               <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a elegible Robot for delection:">
                                  <font>
                                     <Font size="20.0" />

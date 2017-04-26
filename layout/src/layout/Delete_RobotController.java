@@ -5,14 +5,17 @@
  */
 package layout;
 
+import data_manager.delete_robot_type;
 import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +34,8 @@ public class Delete_RobotController implements Initializable {
     private ChoiceBox locomotion_type;
     @FXML
     private AnchorPane Delete_Robot_Type_Pane;
+    @FXML
+    private Button deleteButton;
 
     /**
      * Initializes the controller class.
@@ -63,6 +68,19 @@ public class Delete_RobotController implements Initializable {
     private void load_main(MouseEvent event) throws IOException {
           AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Delete_Robot_Type_Pane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void apagar_Robot_Type(ActionEvent event) {
+        
+        
+        int i = (Integer) locomotion_type.getValue();
+        
+        
+        delete_robot_type app = new delete_robot_type();
+        // delete the row with id 3
+        app.delete(i);
+        
     }
     
 }
