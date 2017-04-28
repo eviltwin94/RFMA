@@ -29,15 +29,25 @@ public class insert_new_robot {
         return conn;
     }
     
-    public void insert(String robot_name, double charge, double capacity, Date birthday) {
-        String sql = "INSERT INTO Robot(task_id, task_name, task_description) VALUES(?,?,?)";
+    public void insert(String robot_name, int robot_type, double charge, double capacity, int birthday, double a, double b, double c, double d, String robot_description) {
+        String sql = "INSERT INTO Robot(robot_name, robot_type, charge, capacity, birthday, a, b, c, d, robot_description) VALUES(?,?,?,?,?,?,?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setInt(1,task_id);
-            pstmt.setString(2, task_name);
-            pstmt.setString(3, task_description);
+            pstmt.setString(1,robot_name);
+            pstmt.setInt(2,robot_type);
+            pstmt.setDouble(3, charge);
+            pstmt.setDouble(4, capacity);
+            pstmt.setDouble(5, birthday);
+            pstmt.setDouble(6, a);
+            pstmt.setDouble(7, b);
+            pstmt.setDouble(8, c);
+            pstmt.setDouble(9, d);
+            pstmt.setString(1,robot_description);
+
+            
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
