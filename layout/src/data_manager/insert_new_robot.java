@@ -44,7 +44,7 @@ public class insert_new_robot {
             pstmt.setDouble(7, b);
             pstmt.setDouble(8, c);
             pstmt.setDouble(9, d);
-            pstmt.setString(1,robot_description);
+            pstmt.setString(10,robot_description);
 
             
 

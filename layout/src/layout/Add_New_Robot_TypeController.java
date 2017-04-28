@@ -8,6 +8,7 @@ package layout;
 import data_manager.insert_robot_type;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -60,7 +64,15 @@ public void initialize(URL location, ResourceBundle resources) {
     @FXML
     private void adicionar_robot_type(ActionEvent event) {
         
-        insert_robot_type app = new insert_robot_type();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+alert.setTitle("Add new robot type");
+alert.setHeaderText("Are you sure you want to add a new robot type ?");
+
+Optional<ButtonType> result = alert.showAndWait();
+if (result.get() == ButtonType.OK){
+    // ... user chose OK
+    
+    insert_robot_type app = new insert_robot_type();
         
          String tf_manufactor_name = manufactor_name_tf.getText();
          int tf_robot_type = Integer.parseInt(robot_type_tf.getText());
@@ -70,6 +82,23 @@ public void initialize(URL location, ResourceBundle resources) {
          
          
         app.insert(tf_robot_type, tf_payload, tf_locomotion_type, tf_manufactor_name);
+        
+         Alert success = new Alert(AlertType.INFORMATION);
+success.setTitle("Confirmation");
+success.setHeaderText(null);
+success.setContentText("You added a new robot type successfully");
+
+success.showAndWait();
+    
+    
+} else {
+    // ... user chose CANCEL or closed the dialog
+}
+        
+        
+        
+        
+        
     }
     
     

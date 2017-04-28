@@ -84,6 +84,13 @@ if (result.get() == ButtonType.OK){
          
          
         app.insert(tf_task_id, tf_task_name, tf_task_description);
+        
+        Alert success = new Alert(AlertType.INFORMATION);
+success.setTitle("Confirmation");
+success.setHeaderText(null);
+success.setContentText("You added a new task successfully");
+
+success.showAndWait();
     
 } else {
     // ... user chose CANCEL or closed the dialog
