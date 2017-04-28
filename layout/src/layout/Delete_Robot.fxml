@@ -50,6 +50,11 @@
          <left>
             <VBox prefHeight="713.0" prefWidth="348.0" BorderPane.alignment="CENTER">
                <children>
+                  <ImageView fitHeight="82.0" fitWidth="91.0" onMouseClicked="#load_main" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.jpg" />
+                     </image>
+                  </ImageView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Robot Type">
                      <font>
                         <Font size="30.0" />

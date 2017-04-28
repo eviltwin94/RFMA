@@ -22,6 +22,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -40,6 +41,8 @@ public class Add_New_TaskController implements Initializable {
     private TextField task_id_tf;
     @FXML
     private TextField task_description_tf;
+    @FXML
+    private ImageView home;
 
 
     
@@ -98,6 +101,12 @@ if (result.get() == ButtonType.OK){
         app.insert(tf_task_id, tf_task_name, tf_task_description);
 
 */
+    }
+
+    @FXML
+    private void load_main(MouseEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Add_New_Task_pane.getChildren().setAll(pane);
     }
     
 }
