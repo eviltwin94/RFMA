@@ -7,24 +7,19 @@ package data_manager;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javafx.scene.control.ChoiceBox;
 
 /**
  *
  * @author gabriel
  */
-public class select_robot_type {
-
-    public ArrayList<Integer> robotTypeList;
-    /**
-     * Connect to the test.db database
-     * @return the Connection object
-     */
-    private Connection connect() {
+public class name_to_id {
+    
+     private Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:DB_RFMA/RFMA_DB.db";
         Connection conn = null;
@@ -35,14 +30,11 @@ public class select_robot_type {
         }
         return conn;
     }
- 
-    
-    /**
-     * select all rows in the warehouses table
-     * @return 
-     */
-    public void selectAll(ChoiceBox teste){
-        String sql = "SELECT robot_type_name FROM RobotType";
+     
+     
+                
+          public int selectAll(String name, int aux){
+        String sql = "SELECT robot_type_name, robot_type_id FROM RobotType";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -56,13 +48,21 @@ public class select_robot_type {
                 /*
                 System.out.println(rs.getInt("robot_type_id"));
                 */
+                if(rs.getString("robot_type_name").equals(name)){
                 
-                String aux = rs.getString("robot_type_name");
+                 aux = rs.getInt("robot_type_id");
+                 
+                 
                 
-                teste.getItems().add(aux);
+                }
+                
+               
                 /*
                robotTypeList.add(rs.getInt(robot_type_id)) ;
                 */
+                
+                
+               
             }
             
 
@@ -70,19 +70,8 @@ public class select_robot_type {
             System.out.println(e.getMessage());
         }
     
+         return (aux);
     
 }
-
-    
-    
-    /*
-     public static void main(String[] args) {
-        select_robot_type app = new select_robot_type();
-        ArrayList<Integer> teste = app.selectAll();
-        
-                
-    }
-*/
-    }
-
- 
+            
+}

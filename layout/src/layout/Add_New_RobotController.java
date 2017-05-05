@@ -6,6 +6,7 @@
 package layout;
 
 import data_manager.insert_new_robot;
+import data_manager.name_to_id;
 import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
@@ -91,8 +92,12 @@ if (result.get() == ButtonType.OK){
         
          String robot_name_tf = tf_robot_name.getText();
          
-                 int robot_type_tf = (Integer) locomotion_type.getValue();
-
+                 String robot_type_tfString =  (String) locomotion_type.getValue();
+                 name_to_id object = new name_to_id();
+                 int robot_type_tf = 0;
+                 robot_type_tf = object.selectAll(robot_type_tfString, robot_type_tf);
+                 
+                 
          
          double charge_tf = Double.parseDouble(tf_charge.getText());
          double capacity_tf = Double.parseDouble(tf_capacity.getText());
