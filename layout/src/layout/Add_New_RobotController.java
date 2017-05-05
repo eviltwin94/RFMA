@@ -97,13 +97,10 @@ if (result.get() == ButtonType.OK){
          double charge_tf = Double.parseDouble(tf_charge.getText());
          double capacity_tf = Double.parseDouble(tf_capacity.getText());
          int birthday_tf = Integer.parseInt(tf_birthday.getText());
-         double a_tf = Double.parseDouble(tf_a.getText());
-         double b_tf = Double.parseDouble(tf_b.getText());
-         double c_tf = Double.parseDouble(tf_c.getText());
-         double d_tf = Double.parseDouble(tf_d.getText());
+         
          String description_tf = tf_description.getText();
          
-                 app.insert(robot_name_tf, robot_type_tf, charge_tf, capacity_tf, birthday_tf, a_tf, b_tf, c_tf, d_tf, description_tf );
+                 app.insert(robot_name_tf, robot_type_tf, charge_tf, capacity_tf, birthday_tf, description_tf );
 
                  Alert success = new Alert(AlertType.INFORMATION);
 success.setTitle("Confirmation");

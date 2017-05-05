@@ -29,8 +29,8 @@ public class insert_new_robot {
         return conn;
     }
     
-    public void insert(String robot_name, int robot_type, double charge, double capacity, int birthday, double a, double b, double c, double d, String robot_description) {
-        String sql = "INSERT INTO Robot(robot_name, robot_type, charge, capacity, birthday, a, b, c, d, robot_description) VALUES(?,?,?,?,?,?,?,?,?,?)";
+    public void insert(String robot_name, int robot_type, double charge, double capacity, int birthday, String robot_description) {
+        String sql = "INSERT INTO Robot(robot_name, robot_type, charge, capacity, birthday,  robot_description) VALUES(?,?,?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -40,11 +40,7 @@ public class insert_new_robot {
             pstmt.setDouble(3, charge);
             pstmt.setDouble(4, capacity);
             pstmt.setDouble(5, birthday);
-            pstmt.setDouble(6, a);
-            pstmt.setDouble(7, b);
-            pstmt.setDouble(8, c);
-            pstmt.setDouble(9, d);
-            pstmt.setString(10,robot_description);
+            pstmt.setString(6,robot_description);
 
             
 
