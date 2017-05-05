@@ -5,8 +5,12 @@
         <group>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/nbproject/jfx-impl.xml</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/data_manager/insert_robot_type.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Layout.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Delete_RobotController.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_TaskController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/server/NewClass.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/data_manager/select_robot_type.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_Robot_TypeController.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_RobotController.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/data_manager/insert_new_robot.java</file>

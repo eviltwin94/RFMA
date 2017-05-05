@@ -68,19 +68,27 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="182.0">
                            <children>
                               <TextArea layoutX="-28.0" layoutY="-32.0" prefHeight="473.0" prefWidth="200.0" />
-                              <Text layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Type:" AnchorPane.leftAnchor="0.0" />
+                              <Text layoutX="33.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Type  Name:" AnchorPane.leftAnchor="0.0" />
                               <Text layoutX="43.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Locomotion Type:" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="40.056640625" AnchorPane.topAnchor="50.0" />
                               <Text boundsType="VISUAL" layoutX="43.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manufactor Name:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="90.0" />
                               <Text layoutX="10.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payload:" wrappingWidth="161.21484375" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="130.0" />
+                              <Text layoutX="28.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a" />
+                              <Text layoutX="23.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="b" />
+                              <Text layoutX="23.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="c" />
+                              <Text layoutX="17.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="d" />
                            </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="171.0">
                            <children>
-                              <TextField fx:id="robot_type_tf" layoutY="14.0" prefHeight="25.0" prefWidth="173.0" />
+                              <TextField fx:id="robot_name_tf" layoutY="14.0" prefHeight="25.0" prefWidth="173.0" />
                               <TextField fx:id="manufactor_name_tf" layoutY="75.0" prefHeight="25.0" prefWidth="173.0" AnchorPane.topAnchor="90.0" />
                               <TextField fx:id="payload_tf" layoutY="116.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.topAnchor="130.0" />
                               <ChoiceBox fx:id="locomotion_type" layoutX="11.0" layoutY="52.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.leftAnchor="0.0" />
-                              <Button layoutX="60.0" layoutY="169.0" mnemonicParsing="false" onAction="#adicionar_robot_type" text="Add" />
+                              <Button layoutX="68.0" layoutY="306.0" mnemonicParsing="false" onAction="#adicionar_robot_type" text="Add" />
+                              <TextField fx:id="a_tf" layoutX="12.0" layoutY="173.0" />
+                              <TextField fx:id="b_tf" layoutX="11.0" layoutY="215.0" />
+                              <TextField fx:id="c_tf" layoutX="11.0" layoutY="249.0" />
+                              <TextField fx:id="d_tf" layoutX="11.0" layoutY="274.0" />
                            </children>
                         </AnchorPane>
                      </items>

@@ -35,16 +35,22 @@ public class insert_robot_type {
     }
  
     
-    public void insert(int robot_type_id, double payload, String locomotion_type, String manufactor_name) {
-        String sql = "INSERT INTO RobotType(robot_type_id, payload, locomotion_type, manufactor_name) VALUES(?,?,?,?)";
+    public void insert(String robot_type_name, double payload, String locomotion_type, String manufactor_name, double a, double b, double c, double d) {
+        String sql = "INSERT INTO RobotType(robot_type_name, payload, locomotion_type, manufactor_name, a, b, c, d, robot_type_id) VALUES(?,?,?,?,?,?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            pstmt.setInt(1,robot_type_id);
+            pstmt.setString(1,robot_type_name);
             pstmt.setDouble(2, payload);
             pstmt.setString(3, locomotion_type);
             pstmt.setString(4, manufactor_name);
+            pstmt.setDouble(5, a);
+            pstmt.setDouble(6, b);
+            pstmt.setDouble(7, c);
+            pstmt.setDouble(8, d);
+
+                                                            
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
