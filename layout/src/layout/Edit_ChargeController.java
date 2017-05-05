@@ -5,6 +5,8 @@
  */
 package layout;
 
+import data_manager.select_robot;
+import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,11 +52,18 @@ public class Edit_ChargeController implements Initializable {
     
     @Override
         public void initialize(URL location, ResourceBundle resources) {
+            
+            select_robot lista = new select_robot();
+            locomotion_type.getItems().removeAll(locomotion_type.getItems());
+    lista.selectAll(locomotion_type);
+            /*
     locomotion_type.getItems().removeAll(locomotion_type.getItems());
     locomotion_type.getItems().addAll("robot 1", "robot 2", "robot 3", "robot 4", "robot 5", "robot 6");
     locomotion_type.getSelectionModel().select("robot 1");
     }    
 
+*/
+        }
     @FXML
     private void load_main(MouseEvent event) throws IOException {
          AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
