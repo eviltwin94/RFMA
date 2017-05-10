@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.insert_operation_data;
 import data_manager.select_robot;
 import data_manager.select_robot_type;
 import java.io.IOException;
@@ -68,6 +69,16 @@ public class Edit_ChargeController implements Initializable {
     private void load_main(MouseEvent event) throws IOException {
          AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Edit_Charge_pane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void editar(ActionEvent event) {
+        
+        insert_operation_data app = new insert_operation_data();
+        
+        String robotName = "teste";
+        int robotType = 2;
+              app.insert(robotName, robotType);
     }
 
    

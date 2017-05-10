@@ -1,5 +1,6 @@
 package server;
 
+import data_manager.insert_operation_data;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,10 +9,12 @@ import java.io.OutputStreamWriter;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import system_manager.OperationData;
 
 public class RequestHandler implements Runnable {
   private final Socket client;
   ServerSocket serverSocket = null;
+    public String nome = "vazio";
 
     public RequestHandler(Socket client) {
       this.client = client;
@@ -38,6 +41,19 @@ public class RequestHandler implements Runnable {
               System.out.println("                                   robotType = " + robotType);
               System.out.println("                                   robotName = " + robotName);
               
+              /*
+              OperationData aux = new OperationData();
+              
+              aux.name = robotName;
+              aux.type = robotType;
+*/
+               nome = getName(robotName);
+              
+              insert_operation_data app = new insert_operation_data();
+              app.insert(robotName, robotType);
+                           
+
+              
           } else if (msgType == 2) {  // 2:<timestamp>;<task_type>;<x>,<y>,<theta>;<v>,<w>
               retval = (robotInput.substring(2)).split(";");
               int timestamp = Integer.parseInt(retval[0]);
@@ -58,20 +74,26 @@ public class RequestHandler implements Runnable {
               System.out.println("                                   robotVel = " + robotVel);
               System.out.println("                                   x = " + x + ", y = " + y + ", theta = " + theta);
               System.out.println("                                   v = " + v + ", w = " + w);
+              System.out.println(nome);
+              
+              
           }
 
           
-	  //userInput=userInput.replaceAll("[^A-Za-z0-9 ]", "");
-          //System.out.println("From " + Thread.currentThread().getName() + ": msgType=" + msgType);
-	  //writer.write("You entered : " + robotInput);
-	  //writer.newLine();
-	  //writer.flush();
+	
 	}
       } catch (IOException e) {
            System.out.println("I/O exception: " + e);
         } catch (Exception ex) {
 	   System.out.println("Exception in Thread Run. Exception : " + ex);
 	  }
+    }
+
+    public String getName(String robotName) {
+    
+        String nome = robotName;
+        return(nome);
+        
     }
 
 }

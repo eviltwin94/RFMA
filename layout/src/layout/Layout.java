@@ -111,6 +111,7 @@ public class  Layout extends Application {
         Socket clientSocket = serverSocket.accept();
         Runnable worker = new RequestHandler(clientSocket);
         executor.execute(worker);
+        
       }
     }catch (IOException e) {
        System.out.println("Exception caught when trying to listen on port "
