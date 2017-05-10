@@ -100,14 +100,31 @@ public class  Layout extends Application {
        
         Task<Integer> task = new Task<Integer>() {
     @Override protected Integer call() throws Exception {
-        int iterations;
-        for (iterations = 0; iterations < 1000000; iterations++) {
-            if (isCancelled()) {
-               break;
-            }
-            System.out.println("Iteration " + iterations);
-        }
-        return iterations;
+        int portNumber = 10227;
+        
+        ExecutorService executor = null;
+    try (ServerSocket serverSocket = new ServerSocket(portNumber);) {
+      //serverSocket.setSoTimeout(10000);  
+      executor = Executors.newFixedThreadPool(5);
+      System.out.println("Waiting for clients on port " + portNumber);
+      while (true) {
+        Socket clientSocket = serverSocket.accept();
+        Runnable worker = new RequestHandler(clientSocket);
+        executor.execute(worker);
+      }
+    }catch (IOException e) {
+       System.out.println("Exception caught when trying to listen on port "
+	+ portNumber + " or listening for a connection");
+       System.out.println(e.getMessage());
+       
+    }
+    finally {
+        if (executor != null) {
+	executor.shutdown();
+	}
+    }
+        
+        return portNumber;
     }
 };
         
