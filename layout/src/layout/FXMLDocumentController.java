@@ -6,8 +6,12 @@
 package layout;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -22,6 +26,7 @@ import javafx.scene.control.TreeTableColumn;
 import static javafx.scene.input.KeyCode.T;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 
 /**
  *
@@ -57,9 +62,15 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-         
+        
+        
+        /*
+        
+          teste t = new teste();
+          
+          t.testar();
       
-      
+      */
      
     
         
