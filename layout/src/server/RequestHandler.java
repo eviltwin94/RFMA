@@ -1,6 +1,7 @@
 package server;
 
 import data_manager.insert_operation_data;
+import data_manager.update_operation_data;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -50,8 +51,13 @@ public class RequestHandler implements Runnable {
                nome = getName(robotName);
               
               insert_operation_data app = new insert_operation_data();
+              
+              if(!(app.verify_existence(nome))){
+              
               app.insert(robotName, robotType);
-                           
+              
+              }
+           
 
               
           } else if (msgType == 2) {  // 2:<timestamp>;<task_type>;<x>,<y>,<theta>;<v>,<w>
@@ -76,6 +82,9 @@ public class RequestHandler implements Runnable {
               System.out.println("                                   v = " + v + ", w = " + w);
               System.out.println(nome);
               
+              update_operation_data app = new update_operation_data();
+              
+              app.update( 1, 1,1,1,1, nome, 3);
               
           }
 

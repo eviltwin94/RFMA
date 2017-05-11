@@ -8,7 +8,9 @@ package data_manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -32,7 +34,7 @@ public class insert_operation_data {
  
     
     public void insert( String name, int type) {
-        String sql = "INSERT INTO Operation(id_operation, operation_time, total_distance, total_energy_consumption, charges_number, discharges_number,  name, type) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Operation(operation_time, total_distance, total_energy_consumption, charges_number, discharges_number,  name, type) VALUES(?,?,?,?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -44,8 +46,8 @@ public class insert_operation_data {
             pstmt.setInt(6, discharge_number);
 
 */
-            pstmt.setString(7, name);
-            pstmt.setInt(8, type);
+            pstmt.setString(6, name);
+            pstmt.setInt(7, type);
 
                         
 
@@ -58,6 +60,47 @@ public class insert_operation_data {
         }
     }
  
+    
+    public boolean verify_existence(String name){
+    
+    String sql = "SELECT name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    
+                return(true);
+                }
+                
+                
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+        
+    return(false);
+    
+    }
+    
+    
+    
+    
+    
     
     
 }
