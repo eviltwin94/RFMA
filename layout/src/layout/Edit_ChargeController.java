@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.edit_charge;
 import data_manager.insert_operation_data;
 import data_manager.select_robot;
 import data_manager.select_robot_type;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -39,6 +41,8 @@ public class Edit_ChargeController implements Initializable {
     private ChoiceBox locomotion_type;
     @FXML
     private AnchorPane Edit_Charge_pane;
+    @FXML
+    private TextField tf_charge;
 
    
          
@@ -74,11 +78,13 @@ public class Edit_ChargeController implements Initializable {
     @FXML
     private void editar(ActionEvent event) {
         
-        insert_operation_data app = new insert_operation_data();
+        edit_charge app = new edit_charge();
         
-        String robotName = "teste";
-        int robotType = 2;
-              app.insert(robotName, robotType);
+        String aux =  (String) locomotion_type.getValue();
+        
+        int newCharge = Integer.parseInt(tf_charge.getText());
+        
+        app.update(aux, newCharge );
     }
 
    
