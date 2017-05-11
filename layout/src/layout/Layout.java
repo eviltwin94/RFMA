@@ -5,6 +5,15 @@
  */
 package layout;
 
+/*
+
+Para fazer quinta-feira:
+
+fazer função editar charge que mexe com a base de dados, para aprender a actualizar tabelas existentes.
+Depois, actualizar as informações de tipo 2
+*/
+
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
