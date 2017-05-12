@@ -60,4 +60,35 @@ public class select_robot {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void selectOp(ChoiceBox teste){
+        String sql = "SELECT name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                /*
+                System.out.println(rs.getInt("robot_type_id"));
+                */
+                
+                String aux = rs.getString("name");
+                
+                teste.getItems().add(aux);
+                /*
+               robotTypeList.add(rs.getInt(robot_type_id)) ;
+                */
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
 }

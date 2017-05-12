@@ -18,50 +18,84 @@
             <Image url="@c1.jpg" />
          </image>
       </ImageView>
-      <TabPane layoutY="64.0" prefHeight="709.0" prefWidth="1627.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
-        <tabs>
-          <Tab text="Consult Operation Data">
-               <content>
-                  <BarChart prefHeight="612.0" prefWidth="1515.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-               </content></Tab>
-          <Tab text="Active Robot Status">
-               <content>
-                  <HBox prefHeight="675.0" prefWidth="1627.0">
-                     <children>
-                        <TreeTableView opacity="0.85">
-                           <columns>
-                              <TreeTableColumn prefWidth="130.0" text="Robot" />
-                              <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
-                              <TreeTableColumn prefWidth="99.0" text="Running time" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="60.0" text="Distance" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="0.0" text="Task" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
-                              <TreeTableColumn minWidth="0.0" text="Consumption" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="50.0" text="Charge" />
-                              <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
-                           </columns>
-                           <HBox.margin>
-                              <Insets bottom="50.0" right="50.0" />
-                           </HBox.margin>
-                        </TreeTableView>
-                     </children>
-                  </HBox>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <Text fx:id="main" layoutX="416.0" layoutY="47.0" onMouseClicked="#load_main" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Fleet Management Application" wrappingWidth="541.298828125">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
+      <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="773.0" prefWidth="1455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TreeTableView opacity="0.85" prefHeight="513.0" prefWidth="825.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TreeTableColumn prefWidth="130.0" text="Robot" />
+                  <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
+                  <TreeTableColumn prefWidth="99.0" text="Running time" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="60.0" text="Distance" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="0.0" text="Task" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
+                  <TreeTableColumn minWidth="0.0" text="Consumption" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="50.0" text="Charge" />
+                  <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
+               </columns>
+               <BorderPane.margin>
+                  <Insets bottom="140.0" left="50.0" right="300.0" top="70.0" />
+               </BorderPane.margin>
+            </TreeTableView>
+         </center>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant azimuth="360.0" color="#fcf8f8" elevation="120.35" />
+               </light>
+            </Lighting>
+         </effect>
+         <left>
+            <VBox prefHeight="713.0" prefWidth="348.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="82.0" fitWidth="91.0" onMouseClicked="#load_main" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@arrow.jpg" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Consult Operation Data">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="70.0" top="70.0" />
+                     </VBox.margin>
+                  </Text>
+                  <SplitPane prefHeight="438.0" prefWidth="351.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="358.0">
+                           <children>
+                              <ChoiceBox fx:id="locomotion_type" layoutX="40.0" layoutY="71.0" prefHeight="25.0" prefWidth="172.0" AnchorPane.leftAnchor="40.0" />
+                              <Button fx:id="deleteButton" layoutX="40.0" layoutY="121.0" mnemonicParsing="false" onAction="#information" text="View full information" />
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robots available for Operation statistics:">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="264.0" layoutY="71.0" mnemonicParsing="false" onAction="#export" prefHeight="19.0" prefWidth="111.0" text="export to CSV File" />
+                           </children>
+                           <padding>
+                              <Insets right="50.0" />
+                           </padding>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <Text fx:id="main1" onMouseClicked="#load_main" strokeType="OUTSIDE" strokeWidth="0.0" text="Robot Fleet Management Application" wrappingWidth="541.298828125" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>

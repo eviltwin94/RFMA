@@ -65,7 +65,7 @@ update_operation_data set = new update_operation_data();
 
                 } else if (msgType == 2) {  // 2:<timestamp>;<task_type>;<x>,<y>,<theta>;<v>,<w>
                     retval = (robotInput.substring(2)).split(";");
-                    int timestamp = Integer.parseInt(retval[0]);
+                    double timestamp = Double.parseDouble(retval[0]);
                     int taskType = Integer.parseInt(retval[1]);
                     String robotPos = retval[2];
                     String robotVel = retval[3];

@@ -499,7 +499,95 @@ try (Connection conn = this.connect();
     
 }
 
+public double fetch_total_distance(String name){
 
+String sql = "SELECT total_distance, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    double temp = rs.getDouble("total_distance");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+
+public int fetch_charge_number(String name){
+
+String sql = "SELECT charges_number, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    int temp = rs.getInt("charges_number");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+
+public int fetch_discharges_number(String name){
+
+String sql = "SELECT discharges_number, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    int temp = rs.getInt("discharges_number");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
 
 
 
