@@ -1,6 +1,7 @@
 package server;
 
 import data_manager.insert_operation_data;
+import data_manager.task_stats;
 import data_manager.update_operation_data;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -86,6 +87,14 @@ update_operation_data set = new update_operation_data();
                     System.out.println("                                   x = " + x + ", y = " + y + ", theta = " + theta);
                     System.out.println("                                   v = " + v + ", w = " + w);
                     System.out.println(nome);
+                    
+                    
+                    task_stats stats = new task_stats();
+                    
+                    if(!stats.verifyTaskExistence(nome, taskType)){
+                    
+                    stats.insert(nome, taskType);
+                    }
 
                     update_operation_data app = new update_operation_data();
                     //bloco referente ao tempo de operação em segundos
@@ -117,14 +126,19 @@ update_operation_data set = new update_operation_data();
                     double capacidade = app.fetch_capacity(nome);
                     double old_timestamp = app.fetch_oldTimestamp(nome);
                     
+                    double taskTime = stats.fetch_task_time(nome, taskType);
+                    
                     if(old_timestamp > timestamp){
                     
                         //significa que esta é uma nova sessão
                         app.calc_charge(carga, capacidade, rtconsume, timestamp);
+                        taskTime = taskTime + timestamp;
+                        stats.update(nome, taskTime, d, taskType);
+                        
                     }else{
                     
                     double delta_time = timestamp - old_timestamp;
-                    
+                    stats.update(nome, delta_time, d, taskType);
                     app.calc_charge(carga, capacidade, rtconsume, delta_time);
                     }
                     
@@ -137,7 +151,7 @@ update_operation_data set = new update_operation_data();
                     
                     
                     
-                    
+                    //stats.update(nome, time, d, taskType);
                     app.update(total_oper_time, d, consumo, timestamp, nome, tipo, x, y);
                     
                 
