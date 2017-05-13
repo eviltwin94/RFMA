@@ -114,7 +114,7 @@ public class  Layout extends Application {
         ExecutorService executor = null;
     try (ServerSocket serverSocket = new ServerSocket(portNumber);) {
       //serverSocket.setSoTimeout(10000);  
-      executor = Executors.newFixedThreadPool(5);
+      executor = Executors.newFixedThreadPool(20);
       System.out.println("Waiting for clients on port " + portNumber);
       while (true) {
         Socket clientSocket = serverSocket.accept();

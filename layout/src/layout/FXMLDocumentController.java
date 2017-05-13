@@ -12,7 +12,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import static java.util.logging.Logger.global;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,9 +25,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import static javafx.scene.input.KeyCode.T;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import static jdk.nashorn.internal.objects.NativeRegExp.global;
+import server.RequestHandler;
+import system_manager.RobotView;
+import system_manager.TreeviewHandler;
 
 
 /**
@@ -53,16 +61,107 @@ public class FXMLDocumentController implements Initializable {
     private Button Consult_Operation_Data;
     @FXML
     private Button alerta;
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    @FXML
+    private TreeTableView<RobotView> table;
+    @FXML
+    private TreeTableColumn<RobotView, String> col1;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col2;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col3;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col4;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col5;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col6;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col7;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col8;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col9;
+    /*
+  TreeItem <RobotView> a1 = new TreeItem<>(new RobotView("NASM",2,3,4,5,6,7,8,9));
+  TreeItem <RobotView> a2 = new TreeItem<>(new RobotView("NASM",2,3,4,5,6,7,8,9));
+  TreeItem <RobotView> a3 = new TreeItem<>(new RobotView("NASM",2,3,4,5,6,7,8,9));
+  */
+  public static TreeItem <RobotView> root = new TreeItem<>(new RobotView("tetas",2,3,4,5,6,7,8,9));
+  
+  
+  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*
+        root.getChildren().setAll(a1, a2, a3);
         
+        root.getChildren().add(a1);
+        */
         
+        //TreeviewHandler hand = new TreeviewHandler();
+        
+        //hand.addTreeView(root);
+        
+        table.setRoot(root);
+        
+        col1.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, String> param) -> (param.getValue().getValue().getrobotname()));
+        
+        col2.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().gettask()));
+        
+        col3.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().getrunningtime()));
+        
+        col4.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getdistance());
+            }
+    
+    });
+        
+        col5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getlinearvelocity());
+            }
+    
+    });
+        
+        col6.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getangularvelocity());
+            }
+    
+    });
+        
+         col7.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getconsumption());
+            }
+    
+    });
+         
+         col8.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getcharge());
+            }
+    
+    });
+         
+         col9.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getremainingtime());
+            }
+    
+    });
+        
+        //TreeView<String> tree = new TreeView<>(dummyRoot);
+    table.setShowRoot(false);
+     root.setExpanded(true);
         
         /*
         

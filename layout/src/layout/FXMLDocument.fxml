@@ -20,18 +20,18 @@
       </ImageView>
       <BorderPane layoutX="399.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="644.0" prefWidth="1104.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <TreeTableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.85" prefHeight="329.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+            <TreeTableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.85" prefHeight="329.0" prefWidth="423.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TreeTableColumn prefWidth="130.0" text="Robot" />
-                  <TreeTableColumn minWidth="1.0" prefWidth="38.0" text="Task" />
-                  <TreeTableColumn prefWidth="99.0" text="Running time" />
-                  <TreeTableColumn minWidth="0.0" prefWidth="60.0" text="Distance" />
+                  <TreeTableColumn fx:id="col1" prefWidth="130.0" text="Robot" />
+                  <TreeTableColumn fx:id="col2" minWidth="1.0" prefWidth="38.0" text="Task" />
+                  <TreeTableColumn fx:id="col3" prefWidth="99.0" text="Running time" />
+                  <TreeTableColumn fx:id="col4" minWidth="0.0" prefWidth="60.0" text="Distance" />
                   <TreeTableColumn minWidth="0.0" prefWidth="0.0" text="Task" />
-                  <TreeTableColumn minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
-                  <TreeTableColumn minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
-                  <TreeTableColumn minWidth="0.0" text="Consumption" />
-                  <TreeTableColumn minWidth="0.0" prefWidth="50.0" text="Charge" />
-                  <TreeTableColumn minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
+                  <TreeTableColumn fx:id="col5" minWidth="0.0" prefWidth="90.0" text="Linear Velocity" />
+                  <TreeTableColumn fx:id="col6" minWidth="0.0" prefWidth="100.0" text="Angular Velocity" />
+                  <TreeTableColumn fx:id="col7" minWidth="0.0" text="Consumption" />
+                  <TreeTableColumn fx:id="col8" minWidth="0.0" prefWidth="50.0" text="Charge" />
+                  <TreeTableColumn fx:id="col9" minWidth="0.0" prefWidth="109.0" text="Remaining Time" />
                </columns>
                <BorderPane.margin>
                   <Insets bottom="140.0" right="40.0" top="70.0" />

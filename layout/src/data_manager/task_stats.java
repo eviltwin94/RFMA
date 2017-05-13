@@ -203,6 +203,129 @@ String sql = "SELECT time, robot_name, task FROM TaskStats";
     };
     
     
+    public void update_initial_conditions( String robot_name, double t0, double d0, int task ) {
+        String sql = "UPDATE TaskStats SET t0 = ?,  "
+                 + "d0 = ? "
+                + "WHERE task = ? AND robot_name = ?";
+                //+ "WHERE robot_name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            pstmt.setDouble(1, t0);
+            pstmt.setDouble(2, d0);
+            pstmt.setInt(3, task);
+
+            pstmt.setString(4, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+    
+    public int fetch_previous_task(String name, int task){
+
+String sql = "SELECT time, robot_name, task FROM TaskStats";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    
+                    int temp = rs.getInt("previous_task");
+                    System.out.println("teste de validação");
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+}
+    
+    public double fetch_t0(String name, int task){
+
+String sql = "SELECT t0, robot_name, task FROM TaskStats";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    
+                    double temp = rs.getDouble("t0");
+                    System.out.println("teste de validação");
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+}
+    
+    
+    public double fetch_d0(String name, int task){
+
+String sql = "SELECT d0, robot_name, task FROM TaskStats";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    
+                    double temp = rs.getDouble("d0");
+                    System.out.println("teste de validação");
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+}
+    
     public static void main(String[] args) {
         
        
