@@ -5,13 +5,17 @@
  */
 package layout;
 
+import data_manager.Robot;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static java.util.logging.Logger.global;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -88,11 +92,15 @@ public class FXMLDocumentController implements Initializable {
   */
   public static TreeItem <RobotView> root = new TreeItem<>(new RobotView("tetas",2,3,4,5,6,7,8,9));
   
-  
+   
   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Robot test = new Robot();
+        //test.verify_Robot_Charge();
+        
         /*
         root.getChildren().setAll(a1, a2, a3);
         
@@ -170,8 +178,12 @@ public class FXMLDocumentController implements Initializable {
           t.testar();
       
       */
-     
-    
+        
+     Robot testi = new Robot();
+        testi.verify_Robot_Charge();
+        
+            
+        
         
         
     }    
@@ -222,6 +234,6 @@ public class FXMLDocumentController implements Initializable {
     private void alertar(ActionEvent event) {
     }
 
-  
+ 
     
 }

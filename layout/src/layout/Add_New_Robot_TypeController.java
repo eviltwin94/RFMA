@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.Robot;
 import data_manager.insert_robot_type;
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +63,9 @@ public void initialize(URL location, ResourceBundle resources) {
     locomotion_type.getItems().removeAll(locomotion_type.getItems());
     locomotion_type.getItems().addAll("2 Wheel differential drive with one castor wheel", "Omnidirectionl kinematics with swedish wheels", "tricycle robot drive", "4 ackerman wheels", "skidster kinematics with wheels or tracks", "with legs");
     locomotion_type.getSelectionModel().select("tricycle robot drive");
+    
+    Robot testi = new Robot();
+        testi.verify_Robot_Charge();
 }
 
     @FXML

@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.Robot;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +55,10 @@ public class Add_New_TaskController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        
+        Robot testi = new Robot();
+        testi.verify_Robot_Charge();
     }    
 
     @FXML

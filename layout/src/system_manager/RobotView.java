@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class RobotView {
 
-    SimpleStringProperty robotname;
+    public SimpleStringProperty robotname;
     SimpleIntegerProperty task;
     SimpleDoubleProperty runningtime;
     SimpleDoubleProperty distance;

@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.Robot;
 import data_manager.task_stats;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,6 +68,8 @@ set1.getData().add(new XYChart.Data("Alice", 10000));
 set1.getData().add(new XYChart.Data("Alex", 2000));
         */
 //h2.getData().addAll(set1);
+Robot testi = new Robot();
+        testi.verify_Robot_Charge();
 
     }    
 

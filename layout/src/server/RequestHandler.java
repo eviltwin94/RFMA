@@ -1,5 +1,6 @@
 package server;
 
+import data_manager.Robot;
 import data_manager.insert_operation_data;
 import data_manager.task_stats;
 import data_manager.update_operation_data;
@@ -8,7 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Array;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -44,14 +48,14 @@ public class RequestHandler implements Runnable {
     private TreeTableColumn<RobotView, Number> col8;
     @FXML
     private TreeTableColumn<RobotView, Number> col9;
-    
+    /*
     int taskType =0;
           double  runningtime =0;
             double d=0;
            double v=0;
             double w=0;
             double consumo =0;
-        
+        */
     
     
     
@@ -90,10 +94,10 @@ public class RequestHandler implements Runnable {
 
                     insert_operation_data app = new insert_operation_data();
 update_operation_data set = new update_operation_data();
-
+/*
                     TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,consumo,8,9));
                     root.getChildren().add(a3);
-                    
+                    */
                     set.update_xy(nome, 0,0);
                     if (!(app.verify_existence(nome))) {
 
@@ -191,60 +195,63 @@ update_operation_data set = new update_operation_data();
                     //t0 tem de ser actualizado;
                     }
                     
-                    /*
-                    root.getChildren().removeAll();
+                    //root.setValue(value);
+                    //root.getChildren().
+                    //root.getChildren().removeIf(filter)
                     TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,consumo,8,9));
+                    TreeItem <RobotView> dummy = new TreeItem<>(new RobotView("dummy",taskType, runningtime, d,v,w,consumo,8,9));
+                    root.getChildren().add(dummy);
+                     
+                    
+                    ObservableList<TreeItem<RobotView>> t = root.getChildren();
+                    
+                    int addflag=0;
+                    //System.out.println("funciona_0");
+                   for(int i =0; i < t.size(); i++){
+                   TreeItem <RobotView> var = t.get(i);
+                   RobotView rv = var.getValue();
+                   
+                   //System.out.println(nomeSimple +"nomsimple");
+                   
+                   //System.out.println(rv.robotname + "rv.robotname");
+                   if(nome.equals(rv.robotname.get())){
+                       root.getChildren().remove(dummy);
+                       addflag =0;
+                   var.setValue(new RobotView(nome,taskType, runningtime, d,v,w,consumo,90,69));
+                       //System.out.println(nomeSimple + "funciona1");
+                       System.out.println("entrei no if: " + nome + "=" +rv.robotname.get());
+                   }
+                   
+                   if(!(nome.equals(rv.robotname.get()))){
+                   System.out.println("entrei no else: " + nome + "/=" +rv.robotname.get());
+                   root.getChildren().remove(dummy);
+                   addflag =1;
+                   }
+                   
+                                       //System.out.println("funciona_2");
+
+                   
+                   }
+                   if(addflag==1){
                     root.getChildren().add(a3);
-                    */
+                   }
+                    //if(t.contains(a3)){
+                    //a3.setValue(new RobotView(nome,taskType, runningtime, d,v,w,consumo,90,69));
+                    //}else{
                     
-                    col1.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, String> param) -> (param.getValue().getValue().getrobotname()));
-        
-        col2.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().gettask()));
-        
-        col3.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().getrunningtime()));
-        
-        col4.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().getdistance()));
-        
-        col5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
-            @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
-                return (param.getValue().getValue().getlinearvelocity());
-            }
-    
-    });
-        
-        col6.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
-            @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
-                return (param.getValue().getValue().getangularvelocity());
-            }
-    
-    });
-        
-         col7.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
-            @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
-                return (param.getValue().getValue().getconsumption());
-            }
-    
-    });
-         
-         col8.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
-            @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
-                return (param.getValue().getValue().getcharge());
-            }
-    
-    });
-         
-         col9.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
-            @Override
-            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
-                return (param.getValue().getValue().getremainingtime());
-            }
-    
-    });
+                    //root.getChildren().add(a3);
+                    //}
                     
+       
+        
+      
+        
+       
+         
+         
+                    
+        
+         
                     if(old_timestamp > timestamp){
                     
                         //significa que esta é uma nova sessão

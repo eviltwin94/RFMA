@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.Robot;
 import data_manager.insert_new_robot;
 import data_manager.name_to_id;
 import data_manager.select_robot_type;
@@ -80,6 +81,9 @@ public class Add_New_RobotController implements Initializable {
         locomotion_type.getItems().removeAll(locomotion_type.getItems());
     lista.selectAll(locomotion_type);
         
+    Robot testi = new Robot();
+        testi.verify_Robot_Charge();
+    
     }    
 
     

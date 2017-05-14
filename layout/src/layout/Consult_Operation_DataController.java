@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.Robot;
 import data_manager.select_robot;
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +61,8 @@ public class Consult_Operation_DataController implements Initializable {
     locomotion_type.getItems().removeAll(locomotion_type.getItems());
     lista.selectOp(locomotion_type);  
             
-            
+            Robot testi = new Robot();
+        testi.verify_Robot_Charge();
             
     }     
 
