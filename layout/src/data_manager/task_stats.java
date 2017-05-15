@@ -325,7 +325,7 @@ String sql = "SELECT d0, robot_name, task FROM TaskStats";
 
         return(-1);
 }
-    
+    /*
     public static void main(String[] args) {
         
        
@@ -335,6 +335,6 @@ String sql = "SELECT d0, robot_name, task FROM TaskStats";
         double x = app.fetch_task_time("exemplo", 99);
         System.out.println(x);
     }
-    
+    */
     
 }

@@ -115,7 +115,7 @@ writer.close();
     
     */
     
-    
+    /*
     public static void main(String[] args) throws IOException {
     
         OperationData app = new OperationData();
@@ -123,7 +123,7 @@ writer.close();
         
          app.exportCSV("teste");
     }
-    
+    */
 }
     
 

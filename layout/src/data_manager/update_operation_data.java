@@ -589,20 +589,201 @@ String sql = "SELECT discharges_number, name FROM Operation";
 
 }
 
+public void update_parcialDischargesNumber(String name, int x ) {
+        String sql = "UPDATE Operation SET parcialDischargesNumber = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
 
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, x);
+            
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
 
+public void update_parcialChargesNumber(String name, int x) {
+        String sql = "UPDATE Operation SET parcialChargesNumber = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, x);
+           
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+
+public void update_DischargesNumber(String name, int x) {
+        String sql = "UPDATE Operation SET discharges_number = ?  "
+              
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, x);
+           
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+
+public void update_ChargesNumber(String name, int x) {
+        String sql = "UPDATE Operation SET charges_number = ?  "
+              
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, x);
+          
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+
+public int fetch_parcialChargesNumber(String name){
+
+String sql = "SELECT parcialChargesNumber, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    int temp = rs.getInt("parcialChargesNumber");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+
+public int fetch_parcialDischargesNumber(String name){
+
+String sql = "SELECT parcialDischargesNumber, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    int temp = rs.getInt("parcialDischargesNumber");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+/*
 public static void main(String[] args) {
     update_operation_data app = new update_operation_data();
 
     
     
-    double x = app.distance(0,0,0,0);
+        app.update_parcialDischargesNumber("Pioneer_P3DX_nr4", 1 );
+        app.update_parcialChargesNumber("Pioneer_P3DX_nr4", 2);
+        app.update_DischargesNumber("Pioneer_P3DX_nr4", 3);
+        app.update_ChargesNumber("Pioneer_P3DX_nr4", 4);
+
+int a = app.fetch_parcialDischargesNumber("Pioneer_P3DX_nr4");
+int b = app.fetch_parcialChargesNumber("Pioneer_P3DX_nr4");
+int c = app.fetch_discharges_number("Pioneer_P3DX_nr4");
+int d = app.fetch_charge_number("Pioneer_P3DX_nr4");
     
- System.out.println(x);
+ System.out.println(a+b+c+d);
 
     
     }
-
-
+*/
 
 }

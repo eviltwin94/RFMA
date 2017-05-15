@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
+    /*
   public static void main(String[] args) throws IOException {
     System.out.println("Start of main");
 //    if (args.length < 1) {
@@ -36,5 +37,7 @@ public class Server {
 	}
     }
   }
+
+*/
 }
 
