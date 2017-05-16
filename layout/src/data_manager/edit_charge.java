@@ -8,7 +8,9 @@ package data_manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -50,6 +52,34 @@ try (Connection conn = this.connect();
     
 }
 
+public int fetch_charge(String name){
+
+String sql = "SELECT charge, robot_name FROM Robot";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                
+                if(aux.equals(name)){
+                    
+                    int temp = rs.getInt("charge");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+}
 
 
 

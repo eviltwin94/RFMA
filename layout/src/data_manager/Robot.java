@@ -38,10 +38,11 @@ public class Robot {
     }
     
     public void verify_Robot_Charge() {
-System.out.println("estou a funcionar dentro do verify");
+
 
 String sql = "SELECT charge, robot_name FROM Robot";
-        
+OperationData app = new OperationData();        
+
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
@@ -54,7 +55,8 @@ String sql = "SELECT charge, robot_name FROM Robot";
                     System.out.println(temp);
                     System.out.println("estou a funcionar dentro do resultset");
                     if(temp<10){
-                    
+                        
+                       
                         
         Alert alert = new Alert(AlertType.WARNING);
 alert.setTitle("Warning Dialog");
@@ -65,7 +67,7 @@ alert.showAndWait();
 
                         
                         
-                     System.out.println("estou a funcionar dentro do if");   
+                       
                     
                     }
                 

@@ -5,6 +5,7 @@
  */
 package layout;
 
+import data_manager.OperationData;
 import data_manager.edit_charge;
 import data_manager.insert_operation_data;
 import data_manager.select_robot;
@@ -14,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,9 +26,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
+import static layout.FXMLDocumentController.root;
+import system_manager.RobotView;
+
 
 /**
  * FXML Controller class
@@ -44,7 +52,26 @@ public class Edit_ChargeController implements Initializable {
     @FXML
     private TextField tf_charge;
 
-   
+    @FXML
+    private TreeTableView<RobotView> table;
+    @FXML
+    private TreeTableColumn<RobotView, String> col1;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col2;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col3;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col4;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col5;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col6;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col7;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col8;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col9;
          
      
     
@@ -68,6 +95,66 @@ public class Edit_ChargeController implements Initializable {
     }    
 
 */
+            table.setRoot(root);
+        
+        col1.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, String> param) -> (param.getValue().getValue().getrobotname()));
+        
+        col2.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().gettask()));
+        
+        col3.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().getrunningtime()));
+        
+        col4.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getdistance());
+            }
+    
+    });
+        
+        col5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getlinearvelocity());
+            }
+    
+    });
+        
+        col6.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getangularvelocity());
+            }
+    
+    });
+        
+         col7.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getconsumption());
+            }
+    
+    });
+         
+         col8.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getcharge());
+            }
+    
+    });
+         
+         col9.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getremainingtime());
+            }
+    
+    });
+        
+        //TreeView<String> tree = new TreeView<>(dummyRoot);
+    table.setShowRoot(false);
+     root.setExpanded(true);
+    
         }
     @FXML
     private void load_main(MouseEvent event) throws IOException {
@@ -83,6 +170,15 @@ public class Edit_ChargeController implements Initializable {
         String aux =  (String) locomotion_type.getValue();
         
         int newCharge = Integer.parseInt(tf_charge.getText());
+        
+        
+        int oldCharge = app.fetch_charge(aux);
+        if(newCharge > oldCharge){
+         OperationData operation = new OperationData();
+         int ndis = operation.fetch_discharges_number(aux);
+         ndis++;
+        operation.update_ChargesNumber(aux, ndis );
+        }
         
         app.update(aux, newCharge );
     }

@@ -169,40 +169,23 @@ public class  Layout extends Application {
         return portNumber;
     }
 };
-        /*
-        Robot alertas = new Robot();
         
-        Task<Void> alertRobotCharge = new Task<Void>() {
-    @Override protected Void call() throws Exception {
-        //ExecutorService executor = null;
         
-        System.out.println("estou a funcionar");
-        Runnable workeri =  new Robot();
-        System.out.println("estou a funcionar");
-        //executor.execute(workeri);
-        workeri.run();
-        System.out.println("estou a funcionar77676");
-        /*
-        while(true){
-        System.out.println("estou a funcionar");
        
-        }
         
-        return null;
+      
         
-                }
-    };
     
-    */
+    
     
          Thread th = new Thread(task);
 th.setDaemon(true);
 th.start();
-/*
-Thread alert = new Thread(alertRobotCharge);
-alert.setDaemon(true);
-alert.start();
-       */ 
+
+
+
+
+
 
 
         launch(args);
@@ -210,12 +193,12 @@ alert.start();
     }
         
         
-       
+}
         
                 
 
         
-    }
+    
 
     
         

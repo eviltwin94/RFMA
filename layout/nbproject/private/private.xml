@@ -5,8 +5,13 @@
         <group>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/FXMLDocumentController.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Consult_Operation_DataController.java</file>
-            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/data_manager/OperationData.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Edit_ChargeController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Edit_Authorized_IPlistController.java</file>
             <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Layout.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Delete_RobotController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_TaskController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_Robot_TypeController.java</file>
+            <file>file:/C:/Users/gabriel/Documents/NetBeansProjects/layout/layout/src/layout/Add_New_RobotController.java</file>
         </group>
     </open-files>
 </project-private>

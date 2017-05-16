@@ -113,6 +113,9 @@ String sql = "SELECT operation_time, name FROM Operation";
 
 public void exportCSV(String name) throws IOException {
     
+    
+    
+    
         OperationData fetch = new OperationData();
         
         
@@ -655,63 +658,7 @@ String sql = "SELECT discharges_number, name FROM Operation";
 
 }
 
-public void update_parcialDischargesNumber(String name, int x ) {
-        String sql = "UPDATE Operation SET parcialDischargesNumber = ?  "
-               
-                
-                
-                + "WHERE name = ?";
-                
-
-try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
- 
-            // set the corresponding param
-            pstmt.setInt(1, x);
-            
-            pstmt.setString(2, name);
-            
-            
-            
-            
-            
-            
-            // update 
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    
-}
-
-public void update_parcialChargesNumber(String name, int x) {
-        String sql = "UPDATE Operation SET parcialChargesNumber = ?  "
-               
-                
-                
-                + "WHERE name = ?";
-                
-
-try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
- 
-            // set the corresponding param
-            pstmt.setInt(1, x);
-           
-            pstmt.setString(2, name);
-            
-            
-            
-            
-            
-            
-            // update 
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    
-}
+   
 
 public void update_DischargesNumber(String name, int x) {
         String sql = "UPDATE Operation SET discharges_number = ?  "
@@ -771,65 +718,7 @@ try (Connection conn = this.connect();
     
 }
 
-public int fetch_parcialChargesNumber(String name){
 
-String sql = "SELECT parcialChargesNumber, name FROM Operation";
-        
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
-            while (rs.next()) {
-                
-                String aux = rs.getString("name");
-                
-                if(aux.equals(name)){
-                    
-                    int temp = rs.getInt("parcialChargesNumber");
-                    
-                    
-                return(temp);
-                }
-                
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return(-1);
-
-}
-
-public int fetch_parcialDischargesNumber(String name){
-
-String sql = "SELECT parcialDischargesNumber, name FROM Operation";
-        
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
-            while (rs.next()) {
-                
-                String aux = rs.getString("name");
-                
-                if(aux.equals(name)){
-                    
-                    int temp = rs.getInt("parcialDischargesNumber");
-                    
-                    
-                return(temp);
-                }
-                
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return(-1);
-
-}
 
 
 }

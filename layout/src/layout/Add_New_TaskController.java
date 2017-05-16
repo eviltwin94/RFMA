@@ -20,10 +20,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import data_manager.insert_task;
 import java.util.Optional;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
+import static layout.FXMLDocumentController.root;
+import system_manager.RobotView;
+
 
 /**
  * FXML Controller class
@@ -45,7 +52,26 @@ public class Add_New_TaskController implements Initializable {
     @FXML
     private ImageView home;
 
-
+ @FXML
+    private TreeTableView<RobotView> table;
+    @FXML
+    private TreeTableColumn<RobotView, String> col1;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col2;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col3;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col4;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col5;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col6;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col7;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col8;
+    @FXML
+    private TreeTableColumn<RobotView, Number> col9;
     
   
 
@@ -55,7 +81,66 @@ public class Add_New_TaskController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        table.setRoot(root);
         
+        col1.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, String> param) -> (param.getValue().getValue().getrobotname()));
+        
+        col2.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().gettask()));
+        
+        col3.setCellValueFactory((TreeTableColumn.CellDataFeatures<RobotView, Number> param) -> (param.getValue().getValue().getrunningtime()));
+        
+        col4.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getdistance());
+            }
+    
+    });
+        
+        col5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getlinearvelocity());
+            }
+    
+    });
+        
+        col6.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getangularvelocity());
+            }
+    
+    });
+        
+         col7.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getconsumption());
+            }
+    
+    });
+         
+         col8.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getcharge());
+            }
+    
+    });
+         
+         col9.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<RobotView, Number>, ObservableValue<Number>>(){
+            @Override
+            public ObservableValue<Number> call(TreeTableColumn.CellDataFeatures<RobotView, Number> param) {
+                return (param.getValue().getValue().getremainingtime());
+            }
+    
+    });
+        
+        //TreeView<String> tree = new TreeView<>(dummyRoot);
+    table.setShowRoot(false);
+     root.setExpanded(true);
+    
         
         Robot testi = new Robot();
         testi.verify_Robot_Charge();
