@@ -8,7 +8,10 @@ package data_manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -39,14 +42,14 @@ public class delete_robot_type {
      *
      * @param id
      */
-    public void delete(int id) {
-        String sql = "DELETE FROM RobotType WHERE robot_type_id = ?";
+    public void delete(String robot_type_name) {
+        String sql = "DELETE FROM RobotType WHERE robot_type_name = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
  
             // set the corresponding param
-            pstmt.setInt(1, id);
+            pstmt.setString(1, robot_type_name);
             // execute the delete statement
             pstmt.executeUpdate();
  
@@ -55,14 +58,83 @@ public class delete_robot_type {
         }
     }
  
-    /**
-     * @param args the command line arguments
-     
-    public static void main(String[] args) {
-        delete_robot_type app = new delete_robot_type();
-        // delete the row with id 3
-        app.delete(99);
-    }
- */
+   public boolean verify_Robot_Activity(int tipo) {
+
+
+String sql = "SELECT type FROM Operation";
+OperationData app = new OperationData();        
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                    
+                    int temp = rs.getInt("type");
+                    
+                    
+                    
+                    if(temp == tipo){
+                        
+                       return(true);
+                        }
+                
+                
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+      return(false);
+
+
+}
+   
+   public int nametoid(String name){
+        String sql = "SELECT robot_type_name, robot_type_id FROM RobotType";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+
+            int temp =0;
+            // loop through the result set
+            while (rs.next()) {
+                
+                /*
+                System.out.println(rs.getInt("robot_type_id"));
+                */
+                if(rs.getString("robot_type_name").equals(name)){
+                
+                 temp = rs.getInt("robot_type_id");
+                 
+                 return(temp);
+                
+                }
+                
+               
+                /*
+               robotTypeList.add(rs.getInt(robot_type_id)) ;
+                */
+                
+                
+               
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+         return (-1);
+    
+}
+   
+   
+   
 }
 

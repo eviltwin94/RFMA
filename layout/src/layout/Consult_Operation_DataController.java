@@ -177,6 +177,24 @@ stage.show();
         String aux = (String) locomotion_type.getValue();
         
         OperationData app = new OperationData();
+        
+        
+        double p = app.fetch_consumed_power(aux);
+        double t = app.fetch_operation_time(aux);
+        
+        double cap = app.fetch_capacity(aux);
+        
+        int n =  (int) (p*t*(1.0/3600.0)/cap);
+        
+        System.out.println(p*t*(1.0/3600.0));
+        
+        System.out.println(n);
+        System.out.println(p);
+        System.out.println(t);
+        System.out.println(cap);
+        
+        app.update_DischargesNumber(aux, (int)n);
+        
         app.exportCSV(aux);
    
         

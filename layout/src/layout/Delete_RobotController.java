@@ -7,6 +7,7 @@ package layout;
 
 import data_manager.Robot;
 import data_manager.delete_robot_type;
+import data_manager.name_to_id;
 import data_manager.select_robot_type;
 import java.io.IOException;
 import java.net.URL;
@@ -175,11 +176,28 @@ alert.setHeaderText("Are you sure you want to delete a robot type ?");
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
     
-     int i = (Integer) locomotion_type.getValue();
+     String i = (String) locomotion_type.getValue();
         
         
         delete_robot_type app = new delete_robot_type();
         // delete the row with id 3
+        
+        
+        int tip = app.nametoid(i);
+        System.out.println(tip);
+System.out.println("antes de entrar na verificação");
+        
+        
+        if(app.verify_Robot_Activity(tip)==true){
+        
+            Alert alert1 = new Alert(AlertType.ERROR);
+alert1.setTitle("Operation not perfomed ");
+alert1.setHeaderText("You can't delete a RobotType with Operation Data collected");
+alert1.setContentText("Robotype "+ i+" has already usage history!");
+
+alert1.showAndWait();
+        
+        }else{
         app.delete(i);
         
          Alert success = new Alert(AlertType.INFORMATION);
@@ -190,12 +208,16 @@ success.setContentText("The delection was successfull");
 success.showAndWait();
     
     
-} else {
-    // ... user chose CANCEL or closed the dialog
+} 
 }
         
         
         
     }
+    
+    
+    
+    
+    
     
 }

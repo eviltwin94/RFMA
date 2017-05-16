@@ -196,7 +196,7 @@ if (result.get() == ButtonType.OK){
                  int robot_type_tf = 0;
                  robot_type_tf = object.selectAll(robot_type_tfString, robot_type_tf);
                  
-                 
+                 //
          
          double charge_tf = Double.parseDouble(tf_charge.getText());
          double capacity_tf = Double.parseDouble(tf_capacity.getText());

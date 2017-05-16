@@ -435,6 +435,8 @@ try (Connection conn = this.connect();
 }
 
 
+
+
 public double calc_charge(double charge, double capacity, double p, double t){
 
     //potência x tempo em horas * conversão para percentagem
