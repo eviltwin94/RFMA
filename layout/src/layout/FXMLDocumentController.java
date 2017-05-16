@@ -7,20 +7,17 @@ package layout;
 
 import data_manager.Robot;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
-import java.net.ServerSocket;
-import java.net.Socket;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
 import static java.util.logging.Logger.global;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,14 +27,18 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.T;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import static jdk.nashorn.internal.objects.NativeRegExp.global;
 import server.RequestHandler;
 import system_manager.RobotView;
-import system_manager.TreeviewHandler;
+
+//import system_manager.TreeviewHandler;
 
 
 /**
@@ -50,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button Add_New_Robot;
     @FXML
-    private AnchorPane rootpane;
+    private  AnchorPane rootpane;
     @FXML
     private Button Add_New_Robot_Type;
     @FXML
@@ -97,6 +98,8 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Add_New_Robot.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         
         //Robot test = new Robot();
         //test.verify_Robot_Charge();
@@ -184,6 +187,7 @@ public class FXMLDocumentController implements Initializable {
         
             
         
+ 
         
         
     }    
@@ -231,9 +235,92 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
+    private void teste(KeyEvent event) {
+    }
+
+    @FXML
     private void alertar(ActionEvent event) {
     }
 
+    @FXML
+    private void cuidadoaqui(KeyEvent event) throws IOException {
+        
+        System.out.println("estou a funcionar @FXML");
+        if (event.getCode() == KeyCode.F3) {
+    System.out.println("F5 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Add_New_Robot.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+        
+        if (event.getCode() == KeyCode.F4) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Add_New_Robot_Type.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+    
+        if (event.getCode() == KeyCode.F5) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Delete_Robot.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+       
+        if (event.getCode() == KeyCode.F7) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Edit_Charge.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+        
+        if (event.getCode() == KeyCode.F8) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Consult_Operation_Data.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+        
+        if (event.getCode() == KeyCode.F6) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Add_New_Task.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+        
+ }
+    
+    @FXML
+    private void cuidadoaqui1(KeyEvent event) throws IOException {
+        
+        System.out.println("estou a funcionar @FXML");
+        if (event.getCode() == KeyCode.F2) {
+    System.out.println("F2 pressed");
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("Add_New_Robot.fxml"));
+        rootpane.getChildren().setAll(pane);
+    //Stop letting it do anything else
+    event.consume();
+   }
+        
+        
+       
+ }
+    
+    
+    }
+
+    
+
+   
+
+    
+
  
     
-}
+

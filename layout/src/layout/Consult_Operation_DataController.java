@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import system_manager.OperationData;
+import data_manager.OperationData;
 
 /**
  * FXML Controller class

@@ -5,6 +5,8 @@
  */
 package data_manager;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Math.sqrt;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,17 +14,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
+
 
 /**
  *
  * @author gabriel
  */
-public class update_operation_data {
+public class OperationData {
     
     
-    
-        private Connection connect() {
+ /**Function Connect is used to connect the aplication to the database. It returns a Connection object*/   
+private Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:DB_RFMA/RFMA_DB.db";
         Connection conn = null;
@@ -33,8 +35,128 @@ public class update_operation_data {
         }
         return conn;
     }
-    
+  
+/**
+ * fetch_consumed_power(): fetch consumed power from Operation Table in the database, for a given name
+ * @param name
+ * @return consumed power
+ */
+public double fetch_consumed_power(String name){
 
+String sql = "SELECT total_energy_consumption, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    double temp = rs.getDouble("total_energy_consumption");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+
+}
+
+/**
+ * fetch_operation_time(): fetch operation time from Operation Table in the database, for a given name
+ * @param name
+ * @return operation time
+ */
+public double fetch_operation_time(String name){
+
+String sql = "SELECT operation_time, name FROM Operation";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("name");
+                
+                if(aux.equals(name)){
+                    
+                    double temp = rs.getDouble("operation_time");
+                    System.out.println("teste de validação");
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+}
+
+
+
+
+
+
+public void exportCSV(String name) throws IOException {
+    
+        OperationData fetch = new OperationData();
+        
+        
+        double operationTime = fetch.fetch_operation_time(name);
+        double consumedPower = fetch.fetch_consumed_power(name);
+        double totalDistance = fetch.fetch_total_distance(name);
+        int chargeNumber = fetch.fetch_charge_number(name);
+        int dischargesNumber = fetch.fetch_discharges_number(name);
+        
+        name = name + ".csv";
+        
+        FileWriter writer = new FileWriter(name);
+
+writer.append("Operation Time");
+writer.append(',');
+writer.append("Total Power Consumption");
+writer.append(',');
+writer.append("Total Distance");
+writer.append(',');
+writer.append("Charges Number");
+writer.append(',');
+writer.append("Discharges Number");
+
+
+writer.append('\n');
+
+writer.append(Double.toString(operationTime));
+writer.append(',');
+writer.append(Double.toString(consumedPower));
+writer.append(',');
+writer.append(Double.toString(totalDistance));
+writer.append(',');
+writer.append(Integer.toString(chargeNumber));
+writer.append(',');
+writer.append(Integer.toString(dischargesNumber));
+
+
+writer.flush();
+writer.close();
+        
+        
+        
+        
+    }
 
 public void update( double operation_time, double total_distance, double total_energy_consumption, double timestamp,  String name, int type, double x, double y) {
         String sql = "UPDATE Operation SET operation_time = ?,  "
@@ -78,68 +200,12 @@ try (Connection conn = this.connect();
     
 
 
-public double fetch_operation_time(String name){
 
-String sql = "SELECT operation_time, name FROM Operation";
-        
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
-            while (rs.next()) {
-                
-                String aux = rs.getString("name");
-                
-                if(aux.equals(name)){
-                    
-                    double temp = rs.getDouble("operation_time");
-                    System.out.println("teste de validação");
-                    
-                return(temp);
-                }
-                
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return(-1);
-}
   
 
 
 
-public double fetch_consumed_power(String name){
 
-String sql = "SELECT total_energy_consumption, name FROM Operation";
-        
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            
-            // loop through the result set
-            while (rs.next()) {
-                
-                String aux = rs.getString("name");
-                
-                if(aux.equals(name)){
-                    
-                    double temp = rs.getDouble("total_energy_consumption");
-                    
-                    
-                return(temp);
-                }
-                
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return(-1);
-
-
-}
 
 public double consumed_power(double a, double b, double c, double v, double w){
 
@@ -764,26 +830,6 @@ String sql = "SELECT parcialDischargesNumber, name FROM Operation";
         return(-1);
 
 }
-/*
-public static void main(String[] args) {
-    update_operation_data app = new update_operation_data();
 
-    
-    
-        app.update_parcialDischargesNumber("Pioneer_P3DX_nr4", 1 );
-        app.update_parcialChargesNumber("Pioneer_P3DX_nr4", 2);
-        app.update_DischargesNumber("Pioneer_P3DX_nr4", 3);
-        app.update_ChargesNumber("Pioneer_P3DX_nr4", 4);
-
-int a = app.fetch_parcialDischargesNumber("Pioneer_P3DX_nr4");
-int b = app.fetch_parcialChargesNumber("Pioneer_P3DX_nr4");
-int c = app.fetch_discharges_number("Pioneer_P3DX_nr4");
-int d = app.fetch_charge_number("Pioneer_P3DX_nr4");
-    
- System.out.println(a+b+c+d);
-
-    
-    }
-*/
 
 }

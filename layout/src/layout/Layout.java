@@ -22,14 +22,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import server.RequestHandler;
+//import layout.FXMLDocumentController.rootpane;
 
 
 
@@ -54,13 +61,36 @@ public class  Layout extends Application {
         
         Scene scene = new Scene(root);
         
+        
+        
         stage.setScene(scene);
         stage.show();
         
-        
+        /*
+         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+ public void handle(final KeyEvent keyEvent) {
+   if (keyEvent.getCode() == KeyCode.F5) {
+       try {
+           System.out.println("F5 pressed");
+           
+           AnchorPane pane = FXMLLoader.load(getClass().getResource("Add_New_Robot.fxml"));
+           rootpane.getChildren().setAll(pane);
+           
+           
+           //FXMLDocumentController.Add_New_Robot_Layout();
+           
+           
+           keyEvent.consume();
+       } catch (IOException ex) {
+           Logger.getLogger(Layout.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   }
+ }
+});
+       
 
 
-            
+          */  
             
             
             

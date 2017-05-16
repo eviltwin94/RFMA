@@ -3,7 +3,7 @@ package server;
 import data_manager.Robot;
 import data_manager.insert_operation_data;
 import data_manager.task_stats;
-import data_manager.update_operation_data;
+import data_manager.OperationData;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,9 +19,9 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
 import static layout.FXMLDocumentController.root;
-import system_manager.OperationData;
+import data_manager.OperationData;
 import system_manager.RobotView;
-import system_manager.TreeviewHandler;
+
 
 
 
@@ -95,7 +95,7 @@ System.out.println(robotInput);
                     tipo = getRobotType(robotType);
 
                     insert_operation_data app = new insert_operation_data();
-update_operation_data set = new update_operation_data();
+OperationData set = new OperationData();
 /*
                     TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,consumo,8,9));
                     root.getChildren().add(a3);
@@ -141,7 +141,7 @@ update_operation_data set = new update_operation_data();
                     stats.insert(nome, taskType);
                     }
 
-                    update_operation_data app = new update_operation_data();
+                    OperationData app = new OperationData();
                     //bloco referente ao tempo de operação em segundos
                     double oper_time = app.fetch_operation_time(nome);
                     double total_oper_time = oper_time + timestamp / (1000);
