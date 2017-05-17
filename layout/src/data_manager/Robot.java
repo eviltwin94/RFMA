@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ This class purpose is to alert the user when a robot is under 10% charge. It is annoying on purpose, to avoid distractions
  */
 package data_manager;
 

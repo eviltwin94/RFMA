@@ -64,14 +64,31 @@ public class RequestHandler implements Runnable {
     @Override
     public void run() {
         //,"US-ASCII"
+        try {
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "US-ASCII"));
+	System.out.println("Thread started with name:" + Thread.currentThread().getName());
+	
+        String robotInput = "";
+        int ch = 'a';
+        String retval[] = new String[4];
         
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream())); /*BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));*/) {
-            System.out.println("Thread started with name:" + Thread.currentThread().getName());
-            String robotInput;
-            while ((robotInput = in.readLine()) != null) {
-System.out.println(robotInput);
-                String retval[] = new String[4];
-                int msgType = Character.getNumericValue(robotInput.charAt(0));
+        while(true) {
+            StringBuilder sb = new StringBuilder();
+            
+            while ((ch = in.read()) != (char)0) {
+                if (ch == -1) break;
+                sb.append((char)ch);
+            }
+            
+            robotInput = sb.toString();
+            System.out.println(robotInput);
+            
+            int msgType = Character.getNumericValue(robotInput.charAt(0));
+            
+                
+                
+                
+                
                 if (msgType == 1) { // 1:<timestamp>;<robot_type>;<robot_name>
 
                     retval = (robotInput.substring(2)).split(";");

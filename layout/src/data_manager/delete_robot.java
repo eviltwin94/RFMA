@@ -5,7 +5,6 @@
  */
 package data_manager;
 
-//O porque desta classe estar aqui é um mistério, não me lembro do que queria fazer. Vou manter para o caso de ser necessária posteriormente
 
 import java.sql.Connection;
 import java.sql.DriverManager;

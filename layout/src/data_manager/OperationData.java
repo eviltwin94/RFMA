@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ This Class is responsible for dealing with the data sent by the robots. It calculates necessary values, fetch the 
+database to get necessary information, and updated all at the same time.
  */
 package data_manager;
 
