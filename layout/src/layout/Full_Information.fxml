@@ -26,7 +26,7 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Text>
-            <BarChart fx:id="h1" layoutX="55.0" layoutY="203.0" title="Perfomed Tasks counter">
+            <BarChart fx:id="h1" layoutY="147.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" title="Perfomed Tasks counter">
               <xAxis>
                 <CategoryAxis label="Task" side="BOTTOM" fx:id="x1" />
               </xAxis>
@@ -34,7 +34,7 @@
                 <NumberAxis fx:id="y1" label="Counter" side="LEFT" />
               </yAxis>
             </BarChart>
-            <BarChart fx:id="h2" layoutX="608.0" layoutY="244.0" title="Operation time by Task">
+            <BarChart fx:id="h2" layoutX="450.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" style="-fx-stroke: #e9967a;" title="Operation time by Task">
               <xAxis>
                 <CategoryAxis label="Task" side="BOTTOM" fx:id="x2" />
               </xAxis>
@@ -42,7 +42,7 @@
                 <NumberAxis fx:id="y2" label="Time" side="LEFT" />
               </yAxis>
             </BarChart>
-            <BarChart fx:id="h3" layoutX="1116.0" layoutY="244.0" title="Travelled distance by Task">
+            <BarChart fx:id="h3" layoutX="900.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="450.0" style="-fx-stroke: #e9967a;" title="Travelled distance by Task">
               <xAxis>
                 <CategoryAxis label="Task" side="BOTTOM" fx:id="x3" />
               </xAxis>

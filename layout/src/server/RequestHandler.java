@@ -48,14 +48,7 @@ public class RequestHandler implements Runnable {
     private TreeTableColumn<RobotView, Number> col8;
     @FXML
     private TreeTableColumn<RobotView, Number> col9;
-    /*
-    int taskType =0;
-          double  runningtime =0;
-            double d=0;
-           double v=0;
-            double w=0;
-            double consumo =0;
-        */
+  
     
     
     
@@ -154,15 +147,15 @@ OperationData set = new OperationData();
                     
 
                     double rtconsume = app.consumed_power(a1, b2, c3, v, w);
-
+System.out.println(rtconsume);
+                    
+                    
                     consumo = consumo + rtconsume;
 
                     //bloco referente a distância
                     
-                    double x0 = app.fetch_x(nome);
-                    double y0 = app.fetch_y(nome);
                     
-                    double d = app.distance(x0, x, y0, y);
+                    
                     
                     
                     //actualizar a carga
@@ -178,30 +171,60 @@ OperationData set = new OperationData();
                     double previous_task = stats.fetch_previous_task(nome, taskType);
                     double runningtime=0;
                     
+                    
+                    
                     if(timestamp==0){
-                    stats.update_initial_conditions(nome,0,0, taskType);
+                    stats.update_initial_conditions(nome,0,0, taskType, 0);
+                    
+                    int taskcounter = stats.fetchTaskCounter(nome, taskType);
+                    taskcounter++;
+                    stats.updateTaskCounter(nome, taskcounter, taskType);
+                    System.out.println("timestamp ==0");
                     }
                     
                     double t0 = stats.fetch_t0(nome, taskType);
                     double d0 = stats.fetch_d0(nome, taskType);
                     
+                    double d = 0;
+                    double dstored =0;
+                    
                     if(taskType==previous_task&&(timestamp!=0)){
-                    runningtime = timestamp - t0;
-                    d = d - d0;
+                    //runningtime = timestamp - t0;
+                    
+                    double x0 = app.fetch_x(nome);
+                    double y0 = app.fetch_y(nome);
+                    
+                    d = app.distance(x0, x, y0, y);
+                    dstored = stats.fetchTaskDistance(nome, taskType);
+                    d = d + dstored;
+                    stats.updateTaskDistance(nome, d, taskType);
+                    //fetch distancia da task, soma e guarda.
+                    
+                    //fetch consume, somar ao rtime
+                    double stored = stats.fetchTaskconsume(nome, tipo);
+                    rtconsume = rtconsume + stored;
+                    
+                    
+                    System.out.println("task = previous");
                         
                     }else{
-                    
+                    int taskcounter = stats.fetchTaskCounter(nome, taskType);
+                    taskcounter++;
+                    stats.updateTaskCounter(nome, taskcounter, taskType);
                     runningtime = timestamp;
+                    System.out.println("else");
+                    stats.update_initial_conditions(nome,0,0, taskType, 0);
                     
-                    stats.update_initial_conditions(nome,0,0, taskType);
+                    
+                    
                     //t0 tem de ser actualizado;
                     }
                     
                     //root.setValue(value);
                     //root.getChildren().
                     //root.getChildren().removeIf(filter)
-                    TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,consumo,8,9));
-                    TreeItem <RobotView> dummy = new TreeItem<>(new RobotView("dummy",taskType, runningtime, d,v,w,consumo,8,9));
+                    TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,rtconsume,8,9));
+                    TreeItem <RobotView> dummy = new TreeItem<>(new RobotView("dummy",taskType, runningtime, d,v,w,rtconsume,8,9));
                     root.getChildren().add(dummy);
                      
                     
@@ -219,7 +242,7 @@ OperationData set = new OperationData();
                    if(nome.equals(rv.robotname.get())){
                        root.getChildren().remove(dummy);
                        addflag =0;
-                   var.setValue(new RobotView(nome,taskType, runningtime, d,v,w,consumo,90,69));
+                   var.setValue(new RobotView(nome,taskType, runningtime, d,v,w,rtconsume,90,69));
                        //System.out.println(nomeSimple + "funciona1");
                        System.out.println("entrei no if: " + nome + "=" +rv.robotname.get());
                    }
@@ -252,7 +275,7 @@ OperationData set = new OperationData();
          
          
                     
-        
+        double delta_charge=0;
          
                     if(old_timestamp > timestamp){
                     
@@ -266,11 +289,13 @@ OperationData set = new OperationData();
                     }else{
                     
                     double delta_time = timestamp - old_timestamp;
-                    stats.update(nome, delta_time, d, taskType);
-                    double delta_charge = app.calc_charge(carga, capacidade, rtconsume, delta_time);
+                    stats.update(nome, timestamp, d, taskType);
+                     delta_charge = app.calc_charge(carga, capacidade, rtconsume, delta_time);
                     }
                     
-                  
+                    rtconsume = rtconsume + delta_charge;
+                    stats.updateTaskConsume(nome, rtconsume, taskType);
+                  stats.updatePreviousTask(nome, taskType, taskType);
                     app.update(total_oper_time, d, consumo, timestamp, nome, tipo, x, y);
                     
                 

@@ -142,7 +142,7 @@ writer.append("Discharges Number");
 
 writer.append('\n');
 
-writer.append(Double.toString(operationTime));
+writer.append(Double.toString(operationTime/3600.0));
 writer.append(',');
 writer.append(Double.toString(consumedPower));
 writer.append(',');
@@ -719,6 +719,11 @@ try (Connection conn = this.connect();
         }
     
 }
+
+
+
+
+
 
 
 

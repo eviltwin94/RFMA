@@ -188,7 +188,11 @@ String sql = "SELECT time, robot_name, task FROM TaskStats";
                     
                     double temp = rs.getDouble("time");
                     int aux2 = rs.getInt("task");
-                    set1.getData().add(new XYChart.Data(aux, temp));
+                    
+                    String aux3 = idtoname(aux2);
+                    
+                    //idtoname
+                    set1.getData().add(new XYChart.Data(aux3, temp/3600.0));
                 }
                 
                 
@@ -203,9 +207,10 @@ String sql = "SELECT time, robot_name, task FROM TaskStats";
     };
     
     
-    public void update_initial_conditions( String robot_name, double t0, double d0, int task ) {
+    public void update_initial_conditions( String robot_name, double t0, double d0, int task, double consume ) {
         String sql = "UPDATE TaskStats SET t0 = ?,  "
-                 + "d0 = ? "
+                 + "d0 = ?, "
+                + "consume = ? "
                 + "WHERE task = ? AND robot_name = ?";
                 //+ "WHERE robot_name = ?";
                 
@@ -216,9 +221,11 @@ try (Connection conn = this.connect();
            
             pstmt.setDouble(1, t0);
             pstmt.setDouble(2, d0);
-            pstmt.setInt(3, task);
+            pstmt.setDouble(3, consume);
+            
+            pstmt.setInt(4, task);
 
-            pstmt.setString(4, robot_name);
+            pstmt.setString(5, robot_name);
             //pstmt.setInt(6, id_operation);
             //pstmt.setInt(8, type);
             
@@ -237,7 +244,7 @@ try (Connection conn = this.connect();
     
     public int fetch_previous_task(String name, int task){
 
-String sql = "SELECT time, robot_name, task FROM TaskStats";
+String sql = "SELECT time, robot_name, task, previous_task FROM TaskStats";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -252,7 +259,7 @@ String sql = "SELECT time, robot_name, task FROM TaskStats";
                 if(aux.equals(name)&&aux2==task){
                     
                     int temp = rs.getInt("previous_task");
-                    System.out.println("teste de validação");
+                    
                     
                 return(temp);
                 }
@@ -325,16 +332,372 @@ String sql = "SELECT d0, robot_name, task FROM TaskStats";
 
         return(-1);
 }
-    /*
-    public static void main(String[] args) {
+    
+    
+    
+    
+    
+    
+    
+    public String idtoname(int id){
+        String sql = "SELECT task_id, task_name FROM Task";
         
-       
-        task_stats app = new task_stats();
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                /*
+                System.out.println(rs.getInt("robot_type_id"));
+                */
+                if(rs.getInt("task_id")==id){
+                
+                 String temp = rs.getString("task_name");
+                 
+                 return(temp);
+                
+                }
+                
+               
+                /*
+               robotTypeList.add(rs.getInt(robot_type_id)) ;
+                */
+                
+                
+               
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+         return ("error");
+    
+}
+    
+    
+    public int fetchTaskCounter(String name, int task){
+
+String sql = "SELECT task_counter, robot_name FROM TaskStats";
         
-        app.update("exemplo", 1, 2, 99);
-        double x = app.fetch_task_time("exemplo", 99);
-        System.out.println(x);
-    }
-    */
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    int temp = rs.getInt("task_counter");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+    
+    
+    public void updateTaskCounter( String robot_name, int tcounter, int task) {
+        String sql = "UPDATE TaskStats SET task_counter = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setInt(1, tcounter);
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+    
+    public void updatePreviousTask( String robot_name, int task, int t ) {
+        String sql = "UPDATE TaskStats SET previous_task = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                //+ "WHERE robot_name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            pstmt.setInt(1, t);
+           
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+    
+    
+    public void taskCounterHistogram( String robot_name, XYChart.Series set1 ){
+    
+    String sql = "SELECT task_counter, robot_name, task FROM TaskStats";
+            
+            
+            
+    
+        
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+               
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                //XYChart.Series set1 = new XYChart.Series();
+                
+                if(aux.equals(robot_name)){
+                    
+                    double temp = rs.getDouble("task_counter");
+                    int aux2 = rs.getInt("task");
+                    String aux3 = idtoname(aux2);
+                    
+                    
+                    
+                    
+                    
+                    //idtoname
+                    set1.getData().add(new XYChart.Data(aux3, temp));
+                }
+                
+                
+                
+                //h.getData().addAll(set1);
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+    };
+    
+    
+    
+    public void distanceHistogram( String robot_name, XYChart.Series set1 ){
+    
+    String sql = "SELECT distance, robot_name, task FROM TaskStats";
+            
+            
+            
+    
+        
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+               
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                //XYChart.Series set1 = new XYChart.Series();
+                
+                if(aux.equals(robot_name)){
+                    
+                    double temp = rs.getDouble("distance");
+                    int aux2 = rs.getInt("task");
+                    String aux3 = idtoname(aux2);
+                    
+                    
+                    
+                    
+                    
+                    //idtoname
+                    set1.getData().add(new XYChart.Data(aux3, temp));
+                }
+                
+                
+                
+                //h.getData().addAll(set1);
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+    };
+    
+    
+    public void updateTaskConsume( String robot_name, double consume, int task) {
+        String sql = "UPDATE TaskStats SET consume = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setDouble(1, consume);
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+    
+     public double fetchTaskconsume(String name, int task){
+
+String sql = "SELECT task, robot_name, consume FROM TaskStats";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    
+                    double temp = rs.getDouble("consume");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+    
+    public double fetchTaskDistance(String name, int task){
+
+String sql = "SELECT task, robot_name, distance FROM TaskStats";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                
+                String aux = rs.getString("robot_name");
+                
+                int aux2 = rs.getInt("task");
+                
+                if(aux.equals(name)&&aux2==task){
+                    
+                    double temp = rs.getDouble("distance");
+                    
+                    
+                return(temp);
+                }
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return(-1);
+
+}
+     
+    public void updateTaskDistance( String robot_name, double distance, int task) {
+        String sql = "UPDATE TaskStats SET distance = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setDouble(1, distance);
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+} 
+    
     
 }

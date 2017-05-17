@@ -29,7 +29,7 @@ public class Full_InformationController implements Initializable {
     @FXML
     private AnchorPane rootpane;
     @FXML
-    private BarChart<?, ?> h1;
+    private BarChart<String, Integer> h1;
     @FXML
     private NumberAxis y1;
     @FXML
@@ -41,7 +41,7 @@ public class Full_InformationController implements Initializable {
     @FXML
     private CategoryAxis x2;
     @FXML
-    private BarChart<?, ?> h3;
+    private BarChart<String, Integer> h3;
     @FXML
     private NumberAxis y3;
     @FXML
@@ -56,11 +56,26 @@ public class Full_InformationController implements Initializable {
         
         
         XYChart.Series set1 = new XYChart.Series<>();
+        XYChart.Series set2 = new XYChart.Series<>();
+        XYChart.Series set3 = new XYChart.Series<>();
         
         task_stats stats = new task_stats();
         
-         stats.timeHistogram( "Pioneer_P3DX_nr4", set1);
-        h2.getData().addAll(set1);
+        stats.taskCounterHistogram("Pioneer_P3DX_nr4", set1);
+        
+        h1.getData().addAll(set1);
+        
+         stats.timeHistogram( "Pioneer_P3DX_nr4", set2);
+         
+        h2.getData().addAll(set2);
+        
+        stats.timeHistogram( "Pioneer_P3DX_nr4", set3);
+         
+        h3.getData().addAll(set3);
+        
+        
+        
+        
         
         /*
         set1.getData().add(new XYChart.Data("James", 5000));
