@@ -383,7 +383,7 @@ String sql = "SELECT d0, robot_name, task FROM TaskStats";
     
     public int fetchTaskCounter(String name, int task){
 
-String sql = "SELECT task_counter, robot_name FROM TaskStats";
+String sql = "SELECT task_counter, robot_name, task FROM TaskStats";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -399,7 +399,7 @@ String sql = "SELECT task_counter, robot_name FROM TaskStats";
                 if(aux.equals(name)&&aux2==task){
                     int temp = rs.getInt("task_counter");
                     
-                    
+                   
                 return(temp);
                 }
                 
@@ -603,6 +603,38 @@ try (Connection conn = this.connect();
     
 }
     
+    public void updateTaskTime( String robot_name, double time, int task) {
+        String sql = "UPDATE TaskStats SET time = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setDouble(1, time);
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
+    
      public double fetchTaskconsume(String name, int task){
 
 String sql = "SELECT task, robot_name, consume FROM TaskStats";
@@ -630,7 +662,7 @@ String sql = "SELECT task, robot_name, consume FROM TaskStats";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
+System.out.println("asneira aqui");
         return(-1);
 
 }
@@ -683,6 +715,77 @@ try (Connection conn = this.connect();
             pstmt.setInt(2, task);
 
             pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+} 
+    
+    
+    public void update_t0( String robot_name, double t, int task) {
+        String sql = "UPDATE TaskStats SET t0 = ?  "
+                 
+                + "WHERE task = ? AND robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setDouble(1, t);
+            pstmt.setInt(2, task);
+
+            pstmt.setString(3, robot_name);
+            //pstmt.setInt(6, id_operation);
+            //pstmt.setInt(8, type);
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+} 
+    
+public void setZeroMoment( String robot_name) {
+        String sql = "UPDATE TaskStats SET t0 = ?,  "
+                 + "d0 = ?, "
+                + "time = ?, "
+                + "distance = ?, "
+                + "consume = ? "
+                + "WHERE  robot_name = ?";
+                
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           
+            
+            pstmt.setDouble(1, 0);
+            pstmt.setDouble(2, 0);
+            pstmt.setDouble(3, 0);
+            pstmt.setDouble(4, 0);
+            pstmt.setDouble(5, 0);
+
+            pstmt.setString(6, robot_name);
             //pstmt.setInt(6, id_operation);
             //pstmt.setInt(8, type);
             

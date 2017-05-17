@@ -435,12 +435,39 @@ try (Connection conn = this.connect();
 }
 
 
+public void updateOldTimestamp(String name, double t) {
+        String sql = "UPDATE Operation SET oldTimestamp = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
 
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setDouble(1, t);
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
 
 public double calc_charge(double charge, double capacity, double p, double t){
 
     //potência x tempo em horas * conversão para percentagem
-double aux = p * (t/3600)*(100/capacity);
+double aux = p * (t/3600.0)*(100.0/capacity);
 
 aux = charge - aux;
 
@@ -720,10 +747,94 @@ try (Connection conn = this.connect();
     
 }
 
+public void updateTotalTime(String name, double time) {
+        String sql = "UPDATE Operation SET operation_time = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setDouble(1, time);
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
 
 
+public void updateTotalDistance(String name, double d) {
+        String sql = "UPDATE Operation SET total_distance = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setDouble(1, d);
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
 
 
+public void updateTotalConsumption(String name, double c) {
+        String sql = "UPDATE Operation SET total_energy_consumption = ?  "
+               
+                
+                
+                + "WHERE name = ?";
+                
+
+try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setDouble(1, c);
+            pstmt.setString(2, name);
+            
+            
+            
+            
+            
+            
+            
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+}
 
 
 

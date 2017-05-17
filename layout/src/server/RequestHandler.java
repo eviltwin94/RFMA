@@ -88,17 +88,20 @@ System.out.println(robotInput);
                     tipo = getRobotType(robotType);
 
                     insert_operation_data app = new insert_operation_data();
-OperationData set = new OperationData();
-/*
-                    TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, runningtime, d,v,w,consumo,8,9));
-                    root.getChildren().add(a3);
-                    */
-                    set.update_xy(nome, 0,0);
+//OperationData set = new OperationData();
+
+                    //set.update_xy(nome, 0,0);
                     if (!(app.verify_existence(nome))) {
 
                         app.insert(robotName, robotType);
 
                     }
+                    task_stats stats = new task_stats();
+                    OperationData op = new OperationData();
+                    //When connecting, set to zero all the initial conditions
+                    stats.setZeroMoment(nome);
+                    op.update_xy(nome, 0, 0);
+                    
 
                 } else if (msgType == 2) {  // 2:<timestamp>;<task_type>;<x>,<y>,<theta>;<v>,<w>
                     retval = (robotInput.substring(2)).split(";");
@@ -126,50 +129,155 @@ OperationData set = new OperationData();
                     
                    
         
-        
+        //class iniciation
                     task_stats stats = new task_stats();
-                    
+                    OperationData op = new OperationData();
+                    //verify if there is an entry in database with actual robot and task. If it doesn't, it creates one
                     if(!stats.verifyTaskExistence(nome, taskType)){
                     
                     stats.insert(nome, taskType);
                     }
+//
+                    int previoustask = stats.fetch_previous_task(nome, taskType);
+                    
+                    double oldtimestamp = op.fetch_oldTimestamp(nome);
+                    
+                    System.out.println(oldtimestamp);
+                    if(timestamp<oldtimestamp){
+                    
+                    int taskcounter = stats.fetchTaskCounter(nome, taskType);
+                    System.out.println( taskcounter);
+                    taskcounter++;
+                                        
+System.out.println( taskcounter);
+                    stats.updateTaskCounter(nome, taskcounter, taskType);
+                    
+                    }
+                    
+                    op.updateOldTimestamp(nome, timestamp);
+                    
+                    //If it changes task, set everything to zero 
+                    if(!(taskType == previoustask)){
+                    stats.setZeroMoment(nome);
+                    int taskcounter = stats.fetchTaskCounter(nome, taskType);
+                    taskcounter++;
+                    stats.updateTaskCounter(nome, taskcounter, taskType);
+                    
+                    }
+                    stats.updatePreviousTask(nome, taskType, taskType);
+                    
+                    //Time in seconds
+                    double RunningTime = timestamp/1000.0;
+                    
+                    double storedtime = stats.fetch_task_time(nome, taskType);
+                    storedtime =storedtime + RunningTime;
+                    stats.updateTaskTime(nome, storedtime, taskType);
+                    double totaltime = op.fetch_operation_time(nome);
+                    totaltime = totaltime + RunningTime;
+                    op.updateTotalTime(nome, totaltime);
+                    
+                    
+                    //distances in meters
+                    double x0 = op.fetch_x(nome);
+                    
+                    double y0 = op.fetch_y(nome);
+                    
+                    double distance = op.distance(x0, x, y0, y);
+                    
+                     double taskdistance = stats.fetchTaskDistance(nome, taskType);
+                    taskdistance = taskdistance + distance;
+                    //System.out.println("taskdistance: " + taskdistance);
+                    stats.updateTaskDistance(nome, taskdistance, taskType);
+                    double totaldistance = op.fetch_total_distance(nome);
+                    totaldistance = totaldistance + distance;
+                    op.updateTotalDistance(nome, totaldistance);
+                    
+                    //consume in watts
+                    double charge = op.fetch_charge(nome);
+                    
+                    double capacity = op.fetch_capacity(nome);
+                    
+                    double a = op.fetch_a(tipo);
+                    
+                    double b = op.fetch_b(tipo);
+           
+                    double c = op.fetch_c(tipo);
+                    
+                    double power = op.consumed_power(a, b, c, v, w);
+                    
+                    //double deltaconsumption = op.calc_charge(charge, capacity, power, RunningTime);
+                    //System.out.println(deltaconsumption+ " delta");
+                    double taskconsumption = stats.fetchTaskconsume(nome, taskType);
+                    System.out.println("task consumption: " + taskconsumption);
+                    //System.out.println(taskconsumption+ " task");
+                    taskconsumption = taskconsumption + power;
+                    
+                    stats.updateTaskConsume(nome, taskconsumption, taskType);
+                    double totalconsume = op.fetch_consumed_power(nome);
+                    totalconsume = totalconsume + power;
+                    op.updateTotalConsumption(nome, totalconsume);
+                    
+                    //charge
+                    
+                    double initialcharge = op.fetch_charge(nome);
+                    double t0 = stats.fetch_t0(nome, taskType);
+                    double deltat = RunningTime - t0;
+                    stats.update_t0(nome, RunningTime, taskType);
+                    double newcharge = op.calc_charge(initialcharge, capacity, power, deltat);
+                    op.update_charge(nome, newcharge);
+                   
+                    //remaining time
+                    
+                    double remainingtime = capacity/power;
+                    
+                    
+                    //show in tableview
+                    
+                    TreeItem <RobotView> a3 = new TreeItem<>(new RobotView(nome,taskType, RunningTime, taskdistance,v,w,taskconsumption,newcharge,remainingtime));
+                    TreeItem <RobotView> dummy = new TreeItem<>(new RobotView("dummy",taskType, RunningTime, taskdistance,v,w,taskconsumption,newcharge,remainingtime));
+                    root.getChildren().add(dummy);
+                    
+                    ObservableList<TreeItem<RobotView>> t = root.getChildren();
+                    
+                    int addflag=0;
+                    //System.out.println("funciona_0");
+                   for(int i =0; i < t.size(); i++){
+                   TreeItem <RobotView> var = t.get(i);
+                   RobotView rv = var.getValue();
+                   
+                   //System.out.println(nomeSimple +"nomsimple");
+                   
+                   //System.out.println(rv.robotname + "rv.robotname");
+                   if(nome.equals(rv.robotname.get())){
+                       root.getChildren().remove(dummy);
+                       addflag =0;
+                   var.setValue(new RobotView(nome,taskType, RunningTime, taskdistance,v,w,taskconsumption,newcharge,remainingtime));
+                       
+                       
+                   }
+                   
+                   if(!(nome.equals(rv.robotname.get()))){
+                   
+                   root.getChildren().remove(dummy);
+                   addflag =1;
+                   }
+                   
+                                       
 
-                    OperationData app = new OperationData();
-                    //bloco referente ao tempo de operação em segundos
-                    double oper_time = app.fetch_operation_time(nome);
-                    double total_oper_time = oper_time + timestamp / (1000);
+                   
+                   }
+                   if(addflag==1){
+                    root.getChildren().add(a3);
+                   }
+                    
+                    
+                    
+                    
+                    
+                    /*
+                    
+                    
 
-                    //bloco referente ao total de energia consumida
-                    double consumo = app.fetch_consumed_power(nome);
-                    double a1 = app.fetch_a(tipo);
-                    double b2 = app.fetch_b(tipo);
-                    double c3 = app.fetch_c(tipo);
-                    
-
-                    double rtconsume = app.consumed_power(a1, b2, c3, v, w);
-System.out.println(rtconsume);
-                    
-                    
-                    consumo = consumo + rtconsume;
-
-                    //bloco referente a distância
-                    
-                    
-                    
-                    
-                    
-                    //actualizar a carga
-                    
-                    double carga = app.fetch_charge(nome);
-                    double capacidade = app.fetch_capacity(nome);
-                    double old_timestamp = app.fetch_oldTimestamp(nome);
-                    
-                    double taskTime = stats.fetch_task_time(nome, taskType);
-                    
-                    //vamos buscar a task anterior para garantir que estamos na mesma task para os calculos a apresentar no ecrã
-                    
-                    double previous_task = stats.fetch_previous_task(nome, taskType);
-                    double runningtime=0;
                     
                     
                     
@@ -297,7 +405,7 @@ System.out.println(rtconsume);
                     stats.updateTaskConsume(nome, rtconsume, taskType);
                   stats.updatePreviousTask(nome, taskType, taskType);
                     app.update(total_oper_time, d, consumo, timestamp, nome, tipo, x, y);
-                    
+                    */
                 
                 }
 

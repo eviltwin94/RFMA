@@ -38,6 +38,8 @@ import system_manager.RobotView;
  */
 public class Consult_Operation_DataController implements Initializable {
 
+    private static String aux;
+
     @FXML
     private AnchorPane Consult_Operation_Data;
     @FXML
@@ -67,6 +69,10 @@ public class Consult_Operation_DataController implements Initializable {
     private TreeTableColumn<RobotView, Number> col8;
     @FXML
     private TreeTableColumn<RobotView, Number> col9;
+    
+    @FXML
+    public static String q;
+    
     
     /**
      * Initializes the controller class.
@@ -163,6 +169,10 @@ public class Consult_Operation_DataController implements Initializable {
 
     @FXML
     private void information(ActionEvent event) throws IOException {
+        
+        String aux = (String) locomotion_type.getValue();
+       
+        q = aux;
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Full_Information.fxml"));
 Parent root1 = (Parent) fxmlLoader.load();

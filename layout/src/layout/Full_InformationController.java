@@ -18,6 +18,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import static layout.Consult_Operation_DataController.q;
+
 
 /**
  * FXML Controller class
@@ -61,15 +63,15 @@ public class Full_InformationController implements Initializable {
         
         task_stats stats = new task_stats();
         
-        stats.taskCounterHistogram("Pioneer_P3DX_nr4", set1);
+        stats.taskCounterHistogram(q, set1);
         
         h1.getData().addAll(set1);
         
-         stats.timeHistogram( "Pioneer_P3DX_nr4", set2);
+         stats.timeHistogram( q, set2);
          
         h2.getData().addAll(set2);
         
-        stats.timeHistogram( "Pioneer_P3DX_nr4", set3);
+        stats.distanceHistogram( q, set3);
          
         h3.getData().addAll(set3);
         
