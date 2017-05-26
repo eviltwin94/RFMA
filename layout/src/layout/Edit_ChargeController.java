@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -181,6 +182,14 @@ public class Edit_ChargeController implements Initializable {
         }
         
         app.update(aux, newCharge );
+        
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+success.setTitle("Confirmation");
+success.setHeaderText(null);
+success.setContentText("You edited " + aux + " charge successfully");
+
+success.showAndWait();
+        
     }
 
    

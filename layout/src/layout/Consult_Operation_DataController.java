@@ -24,6 +24,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import data_manager.OperationData;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.util.Callback;
@@ -206,6 +208,24 @@ stage.show();
         app.update_DischargesNumber(aux, (int)n);
         
         app.exportCSV(aux);
+        
+        if(n<0){
+        Alert prot = new Alert(AlertType.WARNING);
+prot.setTitle("Warning");
+prot.setHeaderText(null);
+prot.setContentText("The selected Robot isn't registed in the Database, some information is wrong");
+
+prot.showAndWait();
+        
+        }
+        
+        
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+success.setTitle("Confirmation");
+success.setHeaderText(null);
+success.setContentText("Your CSV file is now under the application folder");
+
+success.showAndWait();
    
         
         
